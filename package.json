@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "WS chat",
   "main": "index.js",
+  "homepage": "https://messenger-mern-js.herokuapp.com/",
   "scripts": {
+    "start": "node index.js",
     "build": "cd client/ && npm install && npm run build",
     "dev": "concurrently \"nodemon index\" \"npm start --prefix client\"",
     "server": "nodemon index"
