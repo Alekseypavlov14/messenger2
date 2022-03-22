@@ -4,7 +4,6 @@
   "description": "WS chat",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
     "build": "cd client/ && npm install && npm run build",
     "dev": "concurrently \"nodemon index\" \"npm start --prefix client\"",
     "server": "nodemon index"
