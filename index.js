@@ -9,7 +9,7 @@ const connect = require('./database/connect')
 const messageHandler = require('./routes/websocket.routes')
 
 // env
-const HTTP_PORT = process.env.HTTP_PORT || 5000
+const PORT = process.env.PORT || 5000
 
 // express app
 app.get('/', (req, res) => {
@@ -24,8 +24,8 @@ app.ws('/', (ws, req) => {
     })
 })
 
-app.listen(HTTP_PORT, () => {
-    console.log(`Server is working on port ${HTTP_PORT}`)
+app.listen(PORT, () => {
+    console.log(`Server is working on port ${PORT}`)
 })
 
 // database
