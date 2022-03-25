@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 
 app.use(require('./routes/root.routes'))
 
-app.ws('/ws', (ws, req) => {
+app.ws('/', (ws, req) => {
     ws.on('message', (message) => {
         messageHandler(message, ws, wss)
     })
