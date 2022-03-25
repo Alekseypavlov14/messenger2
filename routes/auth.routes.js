@@ -11,15 +11,16 @@ router.post('/register', bodyParser.json(), async (req, res) => {
         login, password
     })
 
-    try {
-        await user.save()
-        res.json(user)
-    }
-    catch (e) {
+    const candidate = await User.findOne({login: login})
+
+    if (candidate) {
         return res.json({
             message: 'This user is already exists'
         })
     }
+
+    await user.save()
+    res.json(user)
 })
 
 router.post('/login', bodyParser.json(), async (req, res) => {
