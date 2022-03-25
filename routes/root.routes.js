@@ -14,6 +14,14 @@ router.get('/favicon.ico', (req, res) => {
     res.sendFile(path.resolve(clientPath, 'favicon.ico'))
 })
 
+router.get('/logo192.png', (req, res) => {
+    res.sendFile(path.resolve(clientPath, 'favicon.ico'))
+})
+
+router.get('/logo512.png', (req, res) => {
+    res.sendFile(path.resolve(clientPath, 'favicon.ico'))
+})
+
 router.get('/manifest.json', (req, res) => {
     res.sendFile(path.resolve(clientPath, 'manifest.json'))
 })
