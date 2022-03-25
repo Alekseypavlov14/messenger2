@@ -1,7 +1,7 @@
 const ws = new WebSocket(
     window.location.origin
     .replace(/https?/, 'ws')
-    .replace(3000, 5000)
+    .replace(3000, 5000) + '/ws'
 )
 
 // reaction on messages
