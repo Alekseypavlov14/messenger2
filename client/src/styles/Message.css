@@ -1,0 +1,16 @@
+.message { 
+    max-width: 60%;
+    border-radius: 5px;
+    margin-top: 5px;
+    padding: 10px;
+}
+
+.message-outgoing {
+    background: rgb(239, 255, 239);
+    align-self: flex-end;
+}
+
+.message-incoming {
+    align-self: flex-start;
+    background: #fff;
+}

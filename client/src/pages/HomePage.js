@@ -1,17 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react'
-import Chat from '../components/Chat'
 import { useRedirect } from '../hooks/useRedirect'
+import ChatPage from './ChatPage'
+import Chat from '../components/Chat'
 import './../styles/Home.css'
 
 const Home = () => {
     useRedirect()
     const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
+    const [activeChat, setActiveChat] = useState(null)
 
     const websocket = useRef(new WebSocket(
         window.location.origin
-        .replace(/http/, 'ws')
         .replace(/https/, 'wss')
+        .replace(/http/, 'ws')
         .replace('3000', '5000')
     ))
     const ws = websocket.current
@@ -31,25 +33,21 @@ const Home = () => {
                     break
 
                 case 'message/send':
-                    console.log(message)
                     setMessages(prev => prev.concat([message]))
+                    setChats(chats => {
+                        const user = JSON.parse(localStorage.getItem('user'))
+
+                        chats.forEach(chat => {
+                            if (chat.login === user.login) {
+                                chat.messages.push(message)
+                            }
+                        })
+                    })
                     break
 
                 default: console.log('DEFAULT CASE')
             }
         }
-
-        // ws.send(JSON.stringify({
-        //     event: 'message/send',
-        //     message: {
-        //         to: 'Jack',
-        //         from: 'Alex',
-        //         time: Date.now(),
-        //         isRead: false,
-        //         isSend: false,
-        //         text: 'Hello, Jack'
-        //     }
-        // }))
     }
 
     function getContactsFromMessages(messages) {
@@ -95,10 +93,31 @@ const Home = () => {
         sortMessages(messages)
     }, [messages])
 
+    if (activeChat) {
+        return (
+            <ChatPage 
+                chat={activeChat} 
+                onClose={() => {
+                    setActiveChat(null)
+                }}
+                onSend={(message) => {
+                    ws.send(JSON.stringify({
+                        event: 'message/send',
+                        message: message
+                    }))
+                }}
+            />
+        )
+    }
+
     return (
-        <div>
+        <div className='home'>
             {chats.map((chat, index) => (
-                <Chat key={index} {...chat} />
+                <Chat key={index} {...chat} 
+                    onClick={() => {
+                        setActiveChat(chat)
+                    }}
+                />
             ))}
         </div>
     )
