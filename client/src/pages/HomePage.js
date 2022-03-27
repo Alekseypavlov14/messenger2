@@ -33,7 +33,6 @@ const Home = () => {
                     break
 
                 case 'message/send':
-                    setMessages(prev => prev.concat([message]))
                     setChats(chats => {
                         const user = JSON.parse(localStorage.getItem('user'))
 

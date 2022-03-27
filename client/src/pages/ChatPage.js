@@ -35,10 +35,10 @@ const ChatPage = ({ chat, onClose, onSend }) => {
                 })}
             </div>
             <div className='chat-page__input-field'>
-                <input 
+                <textarea 
                     className='chat-page__input' 
                     placeholder='Message...'
-                    type='text'
+                    wrap='soft' 
                     value={newMessageText}
                     onChange={(e) => {
                         setNewMessageText(e.target.value)

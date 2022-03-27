@@ -51,6 +51,7 @@
     align-items: center;
     flex: 0 0 50px;
     padding: 0px 10px;
+    resize: none;
 }
 
 .chat-page__input {
@@ -60,6 +61,13 @@
     outline: none;
     font-size: 18px;
     flex: 1 0 auto;
+    padding-top: 10px;
+    border-radius: 10px;
+}
+
+.chat-page__input {
+    outline: none;
+    resize: none;
 }
 
 .chat-page__input-field__button {

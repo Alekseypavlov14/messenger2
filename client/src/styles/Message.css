@@ -3,6 +3,8 @@
     border-radius: 5px;
     margin-top: 5px;
     padding: 10px;
+    word-wrap: normal;
+    overflow-wrap: break-word;
 }
 
 .message-outgoing {
