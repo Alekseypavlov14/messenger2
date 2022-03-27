@@ -22,6 +22,9 @@ app.ws('/', (ws, req) => {
     ws.on('message', (message) => {
         messageHandler(message, ws, wss)
     })
+    ws.on('error', (error) => {
+        res.json(error)
+    })
 })
 
 app.listen(PORT, () => {
