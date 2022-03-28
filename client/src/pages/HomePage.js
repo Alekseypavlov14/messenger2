@@ -5,6 +5,7 @@ import Chat from '../components/Chat'
 import './../styles/Home.css'
 
 const Home = () => {
+    useRedirect()
     const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
@@ -40,6 +41,8 @@ const Home = () => {
                                 chat.messages.push(message)
                             }
                         })
+
+                        return chats
                     })
                     break
 
@@ -91,6 +94,14 @@ const Home = () => {
 
         setChats(contacts)
     }
+
+    useEffect(() => {
+        const contact = activeChat?.login
+
+        if (contact) {
+            setActiveChat(chats.filter(chat => chat.login === contact)[0])
+        }
+    }, [chats])
 
     useEffect(() => {
         sortMessages(messages)
