@@ -5,7 +5,6 @@ import Chat from '../components/Chat'
 import './../styles/Home.css'
 
 const Home = () => {
-    useRedirect()
     const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
@@ -21,7 +20,7 @@ const Home = () => {
     ws.onopen = () => {
         ws.send(JSON.stringify({
             event: 'message/connect',
-            user: JSON.parse(localStorage.getItem('user'))
+            user: JSON.parse(localStorage.getItem('user')) || {}
         }))
 
         ws.onmessage = (message) => {
@@ -47,6 +46,11 @@ const Home = () => {
                 default: console.log('DEFAULT CASE')
             }
         }
+    }
+
+    ws.onerror = (error) => {
+        console.log(error)
+        ws.close()
     }
 
     function getContactsFromMessages(messages) {
