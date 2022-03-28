@@ -26,6 +26,10 @@ router.get('/register', (req, res) => {
     res.sendFile(path.resolve(clientPath, 'index.html'))
 })
 
+router.get('/home', (req, res) => {
+    res.sendFile(path.resolve(clientPath, 'index.html'))
+})
+
 router.use('/auth', require('./auth.routes'))
 
 router.use('/static', express.static(path.join(clientPath, 'static')))
