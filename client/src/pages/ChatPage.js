@@ -15,7 +15,7 @@ const ChatPage = ({ chat, onClose, onSend, ws }) => {
     const MessageBoxElement = useRef(null)
 
     ws.onmessage = (message) => {
-        message = JSON.parse(message)
+        message = JSON.parse(message.data)
 
         switch (message.event){
             case 'message/send':

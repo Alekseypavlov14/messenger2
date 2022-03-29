@@ -115,7 +115,7 @@ const Home = () => {
         return (
             <ChatPage 
                 chat={activeChat} 
-                ws={ws.current}
+                ws={ws}
                 onClose={() => {
                     setActiveChat(null)
                 }}
