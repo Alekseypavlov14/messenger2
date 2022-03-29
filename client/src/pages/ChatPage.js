@@ -4,7 +4,7 @@ import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Message from '../components/Message'
 import './../styles/ChatPage.css'
 
-const ChatPage = ({ chat, onClose, onSend }) => {
+const ChatPage = ({ chat, onClose, onSend, ws }) => {
     const [newMessageText, setNewMessageText] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -13,6 +13,18 @@ const ChatPage = ({ chat, onClose, onSend }) => {
     }))
 
     const MessageBoxElement = useRef(null)
+
+    ws.onmessage = (message) => {
+        message = JSON.parse(message)
+
+        switch (message.event){
+            case 'message/send':
+                setMessages(messages => messages.concat(message.message))
+                break
+
+            default: break
+        }
+    }
 
     return (
         <div className='chat-page'>
