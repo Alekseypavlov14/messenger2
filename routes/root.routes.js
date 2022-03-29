@@ -31,6 +31,7 @@ router.get('/home', (req, res) => {
 })
 
 router.use('/auth', require('./auth.routes'))
+router.use('/contact', require('./contact.routes'))
 
 router.use('/static', express.static(path.join(clientPath, 'static')))
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Message from '../components/Message'
@@ -12,6 +12,8 @@ const ChatPage = ({ chat, onClose, onSend }) => {
         return new Date(a.time) - new Date(b.time)
     }))
 
+    const MessageBoxElement = useRef(null)
+
     return (
         <div className='chat-page'>
             <header className='chat-page__header'>
@@ -22,7 +24,7 @@ const ChatPage = ({ chat, onClose, onSend }) => {
                     {chat.login}
                 </div>
             </header>
-            <div className='chat-page__messages'>
+            <div className='chat-page__messages' ref={MessageBoxElement}>
                 {messages.map((message, index) => {
                     return (
                         <Message 
@@ -47,7 +49,7 @@ const ChatPage = ({ chat, onClose, onSend }) => {
                 {/\S/.test(newMessageText) && 
                     <button 
                         className='chat-page__input-field__button'
-                        onClick={(e) => {
+                        onClick={async (e) => {
                             const newMessage = {
                                 from: user.login,
                                 to: chat.login,
@@ -58,8 +60,9 @@ const ChatPage = ({ chat, onClose, onSend }) => {
                             }
 
                             onSend(newMessage)
-                            setMessages(messages => messages.concat(newMessage))
+                            await setMessages(messages => messages.concat(newMessage))
                             setNewMessageText('')
+                            MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
                         }}
                     >
                         <FontAwesomeIcon icon={ faPaperPlane } />

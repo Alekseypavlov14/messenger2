@@ -1,5 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRedirect } from '../hooks/useRedirect'
+import { faPencil } from '@fortawesome/free-solid-svg-icons'
+import NewContactPage from './NewContactPage'
 import ChatPage from './ChatPage'
 import Chat from '../components/Chat'
 import './../styles/Home.css'
@@ -9,6 +12,7 @@ const Home = () => {
     const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
+    const [isNewChatPageOpened, setNewChatPageOpened] = useState(false)
 
     const websocket = useRef(new WebSocket(
         window.location.origin
@@ -124,15 +128,36 @@ const Home = () => {
         )
     }
 
+    if (isNewChatPageOpened) {
+        return (
+            <NewContactPage setActiveChat={setActiveChat}/>
+        )
+    }
+
     return (
         <div className='home'>
-            {chats.map((chat, index) => (
-                <Chat key={index} {...chat} 
-                    onClick={() => {
-                        setActiveChat(chat)
-                    }}
-                />
-            ))}
+            <header className='home__header'>
+                Web Messenger
+            </header>
+
+            <div className='home__messages'>
+                {chats.map((chat, index) => (
+                    <Chat key={index} {...chat} 
+                        onClick={() => {
+                            setActiveChat(chat)
+                        }}
+                    />
+                ))}
+            </div>
+
+            <button 
+                className='home__write-button'
+                onClick={() => {
+                    setNewChatPageOpened(true)
+                }}
+            >
+                <FontAwesomeIcon icon={faPencil} />
+            </button>
         </div>
     )
 }

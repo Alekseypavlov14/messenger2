@@ -1,9 +1,9 @@
 import {BrowserRouter, Routes, Route} from 'react-router-dom'
 import {useViewport} from './hooks/useViewport'
 import AuthPage from './pages/AuthPage'
-import './styles/App.css'
 import Root from './Root'
 import Home from './pages/HomePage'
+import './styles/App.css'
 
 function App() {
   useViewport()
