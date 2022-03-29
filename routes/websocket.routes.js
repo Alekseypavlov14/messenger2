@@ -37,6 +37,7 @@ async function messageHandler(message, ws, wss) {
 
             wss.clients.forEach(client => {
                 if (client.login === sentMessage.to) {
+                    console.log('success')
                     client.send(JSON.stringify({
                         event: 'message/send',
                         message: sentMessage
