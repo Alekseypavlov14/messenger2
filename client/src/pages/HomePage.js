@@ -119,12 +119,6 @@ const Home = () => {
                 onClose={() => {
                     setActiveChat(null)
                 }}
-                onSend={(message) => {
-                    ws.send(JSON.stringify({
-                        event: 'message/send',
-                        message: message
-                    }))
-                }}
             />
         )
     }

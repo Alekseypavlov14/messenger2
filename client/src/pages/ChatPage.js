@@ -4,7 +4,7 @@ import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Message from '../components/Message'
 import './../styles/ChatPage.css'
 
-const ChatPage = ({ chat, onClose, onSend, ws }) => {
+const ChatPage = ({ chat, onClose, ws }) => {
     const [newMessageText, setNewMessageText] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
 
@@ -71,8 +71,11 @@ const ChatPage = ({ chat, onClose, onSend, ws }) => {
                                 text: newMessageText.trim()
                             }
 
-                            onSend(newMessage)
-                            await setMessages(messages => messages.concat(newMessage))
+                            ws.send(JSON.stringify({
+                                event: 'message/send',
+                                message: newMessage
+                            }))
+                            
                             setNewMessageText('')
                             MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
                         }}
