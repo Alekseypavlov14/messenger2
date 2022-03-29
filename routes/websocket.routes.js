@@ -36,6 +36,14 @@ async function messageHandler(message, ws, wss) {
                 message: sentMessage
             }))
 
+            const contactDevices = wss.clients.filter(client => client.login === sentMessage.to)
+            contactDevices.forEach(contact => {
+                contact.send(JSON.stringify({
+                    event: 'message/send',
+                    message, sentMessage
+                }))
+            }) 
+
             break
 
 
