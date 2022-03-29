@@ -1,8 +1,21 @@
 import React, { useState } from 'react'
 import HttpController from '../http/Http.controller'
+import './../styles/NewChatPage.css'
 
 const NewContactPage = ({ setActiveChat }) => {
-    const [contacts, setContacts] = useState([])
+    const user = JSON.parse(localStorage.getItem('user'))
+    const [candidates, setCandidates] = useState([])
+
+    function searchHandler(e) {
+        const value = e.target.value.trim()
+        if (!value) setCandidates([])
+        
+        HttpController.post('/contact/add', {
+            template: value
+        }).then(data => {
+            setCandidates(data)
+        })
+    }
 
     return (
         <div className='new-contact-page'>
@@ -10,36 +23,28 @@ const NewContactPage = ({ setActiveChat }) => {
                 <input 
                     className='new-contact-page__search__input' 
                     type='text' 
-                    maxLength='20'
-                    onChange={async (e) => {
-                        if (e.target.value.trim()) {
-                            HttpController.post('/contact/add', {
-                                template: e.target.value
-                            }).then(data => {
-                                setContacts(data)
-                            })
-                        } else {
-                            setContacts([])
-                        }
-                    }}
+                    onChange={searchHandler}
                 />
             </div>
 
             <div className='new-contact-page__results'>
-                {contacts.map((contact, index) => (
-                    <div 
-                        key={index} 
-                        className='' 
-                        onClick={() => {
-                            setActiveChat({
-                                login: contact.login, 
-                                messages: []
-                            })
-                        }}
-                    >
-                        {contact.login}
-                    </div>
-                ))}
+                {candidates.map((candidate, index) => {
+                    if (candidate.login === user.login) return false
+                    return (
+                        <div 
+                            className='new-contact-page__candidate'
+                            key={index} 
+                            onClick={() => {
+                                setActiveChat({
+                                    login: candidate.login, 
+                                    messages: []
+                                })
+                            }}
+                        >
+                            {candidate.login}
+                        </div>
+                    )
+                })}
             </div>
         </div>
     )

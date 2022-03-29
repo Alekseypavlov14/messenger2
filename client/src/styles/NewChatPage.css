@@ -1,0 +1,32 @@
+.new-contact-page {
+    width: 100%;
+    height: 100%;
+}
+
+.new-contact-page__search {
+    width: 100%;
+    height: 60px;
+    background: #bbb;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.new-contact-page__search__input {
+    width: 80%;
+    height: 30px;
+    border-radius: 15px;
+    box-shadow: inset 0px 0px 3px #333;
+    padding: 0px 15px;
+    font-size: 18px;
+}
+
+.new-contact-page__candidate {
+    width: 260px;
+    margin: 0 auto;
+    height: 30px;
+    font-size: 18px;
+    border-bottom: 1px solid #bbb;
+    margin-top: 10px;
+}
+
