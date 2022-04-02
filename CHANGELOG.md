@@ -8,7 +8,6 @@ New:
 2) Scroll messages when chat is opened
 3) Scroll when new message is sent
 
-
 ## Version: 1.0.1
 
 Date: 29.03.2022
