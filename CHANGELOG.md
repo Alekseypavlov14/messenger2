@@ -4,10 +4,9 @@
 
 Date: 02.04.2022
 New:
-1) Realize message reading
-2) Render time when messages were sent
-3) Scroll messages when chat is opened
-4) Scroll when new message is sent
+1) Render time when messages were sent
+2) Scroll messages when chat is opened
+3) Scroll when new message is sent
 
 
 ## Version: 1.0.1
