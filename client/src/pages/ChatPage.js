@@ -5,14 +5,25 @@ import Message from '../components/Message'
 import './../styles/ChatPage.css'
 
 const ChatPage = ({ chat, onClose, ws }) => {
-    const [newMessageText, setNewMessageText] = useState('')
     const user = JSON.parse(localStorage.getItem('user'))
+    const [newMessageText, setNewMessageText] = useState('')
 
     const [messages, setMessages] = useState(chat.messages.sort((a, b) => {
         return new Date(a.time) - new Date(b.time)
     }))
 
     const MessageBoxElement = useRef(null)
+
+    function readMessages(messages) {
+        ws.send(JSON.stringify({
+            event: 'message/read',
+            messages: messages
+        }))
+    }
+
+    function scrollChat() {
+        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+    }
 
     ws.onmessage = (message) => {
         message = JSON.parse(message.data)
@@ -22,21 +33,32 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 setMessages(messages => messages.concat(message.message))
                 break
 
+            case 'message/read':
+                const readMessages = message.messages
+                const identifications = readMessages.map(message => message._id)
+
+                setMessages(messages => {
+                    messages.forEach(message => {
+                        if (message._id in identifications) {
+                            message.isRead = true
+                        }
+                    })
+                    return messages
+                })
+                break
+
             default: break
         }
     }
 
     useEffect(() => {
-        ws.send(JSON.stringify({
-            event: 'message/read',
-            messages: messages.filter(message => message.to === user.login)
-        }))
-
-        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+        readMessages(messages.filter(message => message.to === user.login))
+        scrollChat()
     }, [])
 
     useEffect(() => {
-        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+        readMessages(messages.filter(message => message.to === user.login))
+        scrollChat()    
     }, [messages])
 
     return (

@@ -45,12 +45,24 @@ async function messageHandler(message, ws, wss) {
             break
 
         case 'message/read':
+            const messagesToClient = []
+
             for (let i = 0; i < message.messages.length; i++) {
                 const readMessage = await Message.findOne(message.messages[i])
                 readMessage.isRead = true
+                messagesToClient.push(readMessage)
                 await readMessage.save()
             }
             
+            const contact = message.messages[0].from
+            wss.clients.forEach(client => {
+                if (client.login === contact) {
+                    client.send(JSON.stringify({
+                        event: 'message/read',
+                        messages: messagesToClient
+                    }))
+                }
+            })
             break
 
         default: console.log('SWITCH DEFAULT CASE')
