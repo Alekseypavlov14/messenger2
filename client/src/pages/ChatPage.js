@@ -34,6 +34,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 break
 
             case 'message/read':
+                console.log('READ')
                 const readMessages = message.messages
                 const identifications = readMessages.map(message => message._id)
 
@@ -47,7 +48,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 })
                 break
 
-            default: break
+            default: console.log('DEFAULT CASE')
         }
     }
 
