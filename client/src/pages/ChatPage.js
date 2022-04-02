@@ -14,13 +14,6 @@ const ChatPage = ({ chat, onClose, ws }) => {
 
     const MessageBoxElement = useRef(null)
 
-    function readMessages(messages) {
-        ws.send(JSON.stringify({
-            event: 'message/read',
-            messages: messages
-        }))
-    }
-
     function scrollChat() {
         MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
     }
@@ -33,32 +26,15 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 setMessages(messages => messages.concat(message.message))
                 break
 
-            case 'message/read':
-                console.log('READ')
-                const readMessages = message.messages
-                const identifications = readMessages.map(message => message._id)
-
-                setMessages(messages => {
-                    messages.forEach(message => {
-                        if (message._id in identifications) {
-                            message.isRead = true
-                        }
-                    })
-                    return messages
-                })
-                break
-
             default: console.log('DEFAULT CASE')
         }
     }
 
     useEffect(() => {
-        readMessages(messages.filter(message => message.to === user.login))
         scrollChat()
     }, [])
 
     useEffect(() => {
-        readMessages(messages.filter(message => message.to === user.login))
         scrollChat()    
     }, [messages])
 
