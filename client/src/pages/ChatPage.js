@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import Message from '../components/Message'
@@ -25,6 +25,19 @@ const ChatPage = ({ chat, onClose, ws }) => {
             default: break
         }
     }
+
+    useEffect(() => {
+        ws.send(JSON.stringify({
+            event: 'message/read',
+            messages: messages.filter(message => message.to === user.login)
+        }))
+
+        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+    }, [])
+
+    useEffect(() => {
+        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+    }, [messages])
 
     return (
         <div className='chat-page'>
@@ -77,7 +90,6 @@ const ChatPage = ({ chat, onClose, ws }) => {
                             }))
                             
                             setNewMessageText('')
-                            MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
                         }}
                     >
                         <FontAwesomeIcon icon={ faPaperPlane } />

@@ -5,6 +5,7 @@
     padding: 10px;
     word-wrap: normal;
     overflow-wrap: break-word;
+    font-size: 16px;
 }
 
 .message-outgoing {
@@ -15,4 +16,18 @@
 .message-incoming {
     align-self: flex-start;
     background: #fff;
+}
+
+.message__footer{
+    display: flex;
+    width: 100%;
+    justify-content: end;
+    font-size: 12px;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    color: grey;
+}
+
+.message__is-read-icon {
+    margin-left: 5px;
 }

@@ -20,11 +20,6 @@ async function messageHandler(message, ws, wss) {
 
             break
 
-
-        case 'message/get':
-            break
-
-
         case 'message/send':
             const sentMessage = new Message(message.message)
 
@@ -49,6 +44,14 @@ async function messageHandler(message, ws, wss) {
 
             break
 
+        case 'message/read':
+            for (let i = 0; i < message.messages.length; i++) {
+                const readMessage = await Message.findOne(message.messages[i])
+                readMessage.isRead = true
+                await readMessage.save()
+            }
+            
+            break
 
         default: console.log('SWITCH DEFAULT CASE')
     }
