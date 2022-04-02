@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Version: 1.1.1
+## Version: 1.1.0
 
 Date: 02.04.2022
 New:

@@ -33,20 +33,20 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 setMessages(messages => messages.concat(message.message))
                 break
 
-            // case 'message/read':
-            //     console.log('READ')
-            //     const readMessages = message.messages
-            //     const identifications = readMessages.map(message => message._id)
+            case 'message/read':
+                console.log('READ')
+                const readMessages = message.messages
+                const identifications = readMessages.map(message => message._id)
 
-            //     setMessages(messages => {
-            //         messages.forEach(message => {
-            //             if (message._id in identifications) {
-            //                 message.isRead = true
-            //             }
-            //         })
-            //         return messages
-            //     })
-            //     break
+                setMessages(messages => {
+                    messages.forEach(message => {
+                        if (message._id in identifications) {
+                            message.isRead = true
+                        }
+                    })
+                    return messages
+                })
+                break
 
             default: console.log('DEFAULT CASE')
         }
