@@ -35,7 +35,7 @@
 }
 
 .chat-page__messages {
-    padding: 5px;
+    padding: 10px;
     flex: 1 0 auto;
     max-height: calc(100% - 40px - 50px);
     display: flex;
