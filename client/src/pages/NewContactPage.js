@@ -1,29 +1,30 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import HttpController from '../http/Http.controller'
+import Candidate from '../components/Candidate'
 import './../styles/NewChatPage.css'
 
 const NewContactPage = ({ setActiveChat }) => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [candidates, setCandidates] = useState([])
+    const [value, setValue] = useState('')
 
-    function searchHandler(e) {
-        const value = e.target.value.trim()
-        if (!value) setCandidates([])
+    useEffect(() => {
+        if (!value) return setCandidates([])
         
         HttpController.post('/contact/add', {
             template: value
         }).then(data => {
             setCandidates(data)
         })
-    }
+    }, [value])
 
     return (
         <div className='new-contact-page'>
             <div className='new-contact-page__search'>
                 <input 
                     className='new-contact-page__search__input' 
+                    onChange={e => setValue(e.target.value)}
                     type='text' 
-                    onChange={searchHandler}
                 />
             </div>
 
@@ -31,20 +32,19 @@ const NewContactPage = ({ setActiveChat }) => {
                 {candidates.map((candidate, index) => {
                     if (candidate.login === user.login) return false
                     return (
-                        <div 
-                            className='new-contact-page__candidate'
-                            key={index} 
-                            onClick={() => {
-                                setActiveChat({
-                                    login: candidate.login, 
-                                    messages: []
-                                })
-                            }}
-                        >
-                            {candidate.login}
-                        </div>
+                        <Candidate 
+                            candidate={candidate} 
+                            setActiveChat={setActiveChat} 
+                            key={index}
+                        />
                     )
                 })}
+                {candidates.length === 0 &&
+                value !== '' && (
+                    <div className='new-contact-page__not-found-holder'>
+                        Users not found
+                    </div>
+                )}
             </div>
         </div>
     )

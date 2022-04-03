@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Version 1.1.1
+
+Date: 02.04.2022
+New:
+1) Refactor NewContactPage 
+2) Change styles of messages (time)
+3) Add not-found-holder to newContactPage
+4) Create Candidate component
+
 ## Version: 1.1.0
 
 Date: 02.04.2022
@@ -13,7 +22,6 @@ New:
 Date: 29.03.2022
 New:
 1) Change some style
-
 
 ## Version: 1.0.0
 

@@ -28,6 +28,10 @@
     color: grey;
 }
 
+.message__footer__time {
+    letter-spacing: 0px;
+}
+
 .message__is-read-icon {
     margin-left: 5px;
 }
