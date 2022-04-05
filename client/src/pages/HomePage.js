@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRedirect } from '../hooks/useRedirect'
 import { faPencil } from '@fortawesome/free-solid-svg-icons'
+import { useNavigate } from 'react-router-dom'
 import NewContactPage from './NewContactPage'
 import ChatPage from './ChatPage'
 import Chat from '../components/Chat'
@@ -13,6 +14,7 @@ const Home = () => {
     const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
     const [isNewChatPageOpened, setNewChatPageOpened] = useState(false)
+    const navigate = useNavigate()
 
     const websocket = useRef(new WebSocket(
         window.location.origin
@@ -133,6 +135,12 @@ const Home = () => {
         <div className='home'>
             <header className='home__header'>
                 Web Messenger
+
+                <button onClick={() => {
+                    ws.close()
+                    localStorage.removeItem('user')
+                    navigate('/')
+                }}>EXIT</button>
             </header>
 
             <div className='home__messages'>
