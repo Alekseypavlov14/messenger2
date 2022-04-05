@@ -15,7 +15,8 @@ const ChatPage = ({ chat, onClose, ws }) => {
     const MessageBoxElement = useRef(null)
 
     function scrollChat() {
-        MessageBoxElement.current.scrollTop = MessageBoxElement.current.scrollHeight
+        const chatBox = MessageBoxElement.current
+        chatBox.scrollTop = chatBox.scrollHeight
     }
 
     ws.onmessage = (message) => {
@@ -24,6 +25,12 @@ const ChatPage = ({ chat, onClose, ws }) => {
         switch (message.event){
             case 'message/send':
                 setMessages(messages => messages.concat(message.message))
+                break
+
+            case 'error':
+                if (message.code === 401) {
+                    console.log('You do not have an access to those messages')
+                }
                 break
 
             default: console.log('DEFAULT CASE')
@@ -85,7 +92,8 @@ const ChatPage = ({ chat, onClose, ws }) => {
 
                             ws.send(JSON.stringify({
                                 event: 'message/send',
-                                message: newMessage
+                                message: newMessage,
+                                user: user
                             }))
                             
                             setNewMessageText('')

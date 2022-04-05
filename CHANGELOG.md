@@ -1,10 +1,13 @@
 # CHANGELOG
 
-## Version 1.1.2
+## Version 1.2.0
 
 Date: 05.04.2022
 New:
-1) Refactor routing (create controllers)
+1) Hash passwords
+2) Refactor routing (create controllers)
+3) Restructure websocket controller
+4) Add checking of access to each websocket request
 
 ## Version 1.1.1
 
