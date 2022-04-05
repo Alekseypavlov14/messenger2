@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRedirect } from '../hooks/useRedirect'
-import { faPencil } from '@fortawesome/free-solid-svg-icons'
+import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import NewContactPage from './NewContactPage'
 import ChatPage from './ChatPage'
@@ -134,13 +134,13 @@ const Home = () => {
     return (
         <div className='home'>
             <header className='home__header'>
-                Web Messenger
-
-                <button onClick={() => {
-                    ws.close()
-                    localStorage.removeItem('user')
-                    navigate('/')
-                }}>EXIT</button>
+                <button
+                    className='home__header__account'
+                    onClick={() => navigate('/account')}
+                >
+                    <FontAwesomeIcon icon={faBars} />
+                </button>
+                <div className='home__header__title'>Web Messenger</div>
             </header>
 
             <div className='home__messages'>

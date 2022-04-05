@@ -8,6 +8,7 @@ New:
 2) Refactor routing (create controllers)
 3) Restructure websocket controller
 4) Add checking of access to each websocket request
+5) Add account (self) page
 
 ## Version 1.1.1
 

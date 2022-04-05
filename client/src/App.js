@@ -4,6 +4,7 @@ import AuthPage from './pages/AuthPage'
 import Root from './Root'
 import Home from './pages/HomePage'
 import './styles/App.css'
+import AccountPage from './pages/AccountPage'
 
 function App() {
   useViewport()
@@ -16,6 +17,7 @@ function App() {
           <Route path='/home' element={<Home />} />
           <Route path='/register' element={<AuthPage type='register' />}/>
           <Route path='/login' element={<AuthPage type='login' />}/>
+          <Route path='/account' element={<AccountPage />} />
         </Routes>
       </BrowserRouter>
     </div>

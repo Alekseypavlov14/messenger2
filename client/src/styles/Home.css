@@ -9,13 +9,21 @@
     width: 100%;
     height: 50px;
     background: rgb(181, 181, 255);
-    padding-left: 20px;
+    padding-left: 10px;
     font-size: 18px;
     color: #fff;
     line-height: 50px;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+}
+
+.home__header__account {
+    background: transparent;
+    color: white;
+    font-size: 20px;
+}
+
+.home__header__title {
+    margin-left: 20px;
 }
 
 .home__messages {
