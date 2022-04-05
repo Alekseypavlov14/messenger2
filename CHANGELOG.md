@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 1.1.2
+
+Date: 05.04.2022
+New:
+1) Refactor routing (create controllers)
+
 ## Version 1.1.1
 
 Date: 02.04.2022

@@ -1,17 +1,8 @@
 const {Router} = require('express')
-const User = require('./../models/User')
-const bodyParser = require('body-parser')
+const ContactRoutesController = require('./controllers/ContactRoutesController')
 
 const router = Router()
 
-router.post('/add', bodyParser.json(), async (req, res) => {
-    const template = req.body.template
-    const regexTemplate = new RegExp(template, 'i')
-
-    const users = await User.find({})
-    const candidates = users.filter(user => regexTemplate.test(user.login))
-
-    res.json(candidates)
-})
+router.post('/add', (req, res) => ContactRoutesController.add(req, res))
 
 module.exports = router
