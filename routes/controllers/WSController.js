@@ -1,7 +1,6 @@
 const User = require('./../../models/User')
 const Message = require('./../../models/Message')
 
-
 class WSController {
     async connect(message, ws, wss) {
         ws.login = message.user.login
