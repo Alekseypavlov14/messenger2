@@ -1,5 +1,5 @@
 import Http from "../http/Http.controller"
-import Valid from './../valid/Valid.controller'
+import Valid from '../valid/Valid.controller'
 
 class Auth {
     async login(login, password) {

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import HttpController from '../http/Http.controller'
+import HttpController from '../modules/http/Http.controller'
 import Candidate from '../components/Candidate'
 import './../styles/NewChatPage.css'
 
