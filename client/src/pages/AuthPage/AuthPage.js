@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
-import Auth from '../modules/auth/Auth.controller'
+import Auth from '../../modules/auth/Auth.controller'
 import { useNavigate } from 'react-router'
-import './../styles/Auth.css'
+import './Auth.css'
 
 const AuthPage = ({type}) => {
     const [login, setLogin] = useState('')
@@ -78,4 +78,4 @@ const AuthPage = ({type}) => {
     )
 }
 
-export default AuthPage
+export { AuthPage }

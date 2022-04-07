@@ -1,8 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
-import Message from '../components/Message'
-import './../styles/ChatPage.css'
+import Message from '../../components/message/Message'
+import './ChatPage.css'
 
 const ChatPage = ({ chat, onClose, ws }) => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -107,4 +107,4 @@ const ChatPage = ({ chat, onClose, ws }) => {
     )
 }
 
-export default ChatPage
+export { ChatPage }

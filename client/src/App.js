@@ -1,10 +1,10 @@
-import {BrowserRouter, Routes, Route} from 'react-router-dom'
-import {useViewport} from './hooks/useViewport'
-import AuthPage from './pages/AuthPage'
+import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { useViewport } from './hooks/useViewport'
+import { AuthPage } from './pages/AuthPage/index'
+import { HomePage } from './pages/HomePage/index'
+import { AccountPage } from './pages/AccountPage/index'
 import Root from './Root'
-import Home from './pages/HomePage'
 import './styles/App.css'
-import AccountPage from './pages/AccountPage'
 
 function App() {
   useViewport()
@@ -14,7 +14,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path='/' element={<Root />} />
-          <Route path='/home' element={<Home />} />
+          <Route path='/home' element={<HomePage />} />
           <Route path='/register' element={<AuthPage type='register' />}/>
           <Route path='/login' element={<AuthPage type='login' />}/>
           <Route path='/account' element={<AccountPage />} />

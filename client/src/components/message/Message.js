@@ -1,5 +1,5 @@
 import React from 'react'
-import './../styles/Message.css'
+import './../../styles/Message.css'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 

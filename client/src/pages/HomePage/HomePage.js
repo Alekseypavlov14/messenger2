@@ -1,14 +1,14 @@
 import React, { useEffect, useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRedirect } from '../hooks/useRedirect'
+import { useRedirect } from '../../hooks/useRedirect'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
-import NewContactPage from './NewContactPage'
-import ChatPage from './ChatPage'
-import Chat from '../components/Chat'
-import './../styles/Home.css'
+import { NewContactPage } from '../NewContactPage/index'
+import { ChatPage } from '../ChatPage/index'
+import Chat from '../../components/chat/Chat'
+import './Home.css'
 
-const Home = () => {
+const HomePage = () => {
     useRedirect()
     const [messages, setMessages] = useState([])
     const [chats, setChats] = useState([])
@@ -165,4 +165,6 @@ const Home = () => {
     )
 }
 
-export default Home
+export {
+    HomePage
+}

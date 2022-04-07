@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import HttpController from '../modules/http/Http.controller'
-import Candidate from '../components/Candidate'
-import './../styles/NewChatPage.css'
+import HttpController from './../../modules/http/Http.controller'
+import Candidate from './../../components/candidate/Candidate'
+import './NewChatPage.css'
 
 const NewContactPage = ({ setActiveChat }) => {
     const user = JSON.parse(localStorage.getItem('user'))
@@ -50,4 +50,4 @@ const NewContactPage = ({ setActiveChat }) => {
     )
 }
 
-export default NewContactPage
+export { NewContactPage }

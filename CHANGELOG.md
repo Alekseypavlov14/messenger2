@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 1.2.1
+
+Date: 07.04.2022
+New:
+1) Change styles in new chat page
+2) form modules folder
+3) Change the structure of the folders
+
 ## Version 1.2.0
 
 Date: 05.04.2022

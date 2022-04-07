@@ -1,13 +1,23 @@
-import React, { useState } from 'react'
-import './../styles/account.css'
+import React, { useEffect, useRef, useState } from 'react'
+import './account.css'
 
 const AccountPage = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [login, setLogin] = useState(user.login)
+
+    const LoginInput = useRef(null)
  
     function changeHandler(e) {
         setLogin(e.target.value)
     }
+
+    useEffect(() => {
+        if (login !== user.login) {
+            LoginInput.current.style.border = '1px solid tomato'
+        } else {
+            LoginInput.current.style.border = 'none'
+        }
+    }, [login])
 
     return (
         <div className='account'>
@@ -28,10 +38,11 @@ const AccountPage = () => {
 
                     <input
                         className='account__data__login__input'
-                        id='#login-input'
-                        type='text'
-                        value={login}
                         onChange={changeHandler}
+                        id='#login-input'
+                        ref={LoginInput}
+                        value={login}
+                        type='text'
                     />
                 </div>
             </div>
@@ -39,4 +50,4 @@ const AccountPage = () => {
     )
 }
 
-export default AccountPage
+export { AccountPage }
