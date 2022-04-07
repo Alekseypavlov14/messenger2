@@ -9,6 +9,7 @@ New:
 3) form modules folder
 4) Change the structure of the folders
 5) Fix bag with routing
+6) Replace styles files
 
 ## Version 1.2.0
 
