@@ -1,12 +1,14 @@
 # CHANGELOG
 
-## Version 1.2.1
+## Version 1.3.0
 
 Date: 07.04.2022
 New:
-1) Change styles in new chat page
-2) form modules folder
-3) Change the structure of the folders
+1) Realize deleting and leaving account
+2) Change styles in new chat page
+3) form modules folder
+4) Change the structure of the folders
+5) Fix bag with routing
 
 ## Version 1.2.0
 

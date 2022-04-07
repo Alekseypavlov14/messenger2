@@ -18,5 +18,6 @@ router.get('/home', (req, res) => RootRoutesController.index(req, res))
 
 router.use('/auth', require('./auth.routes'))
 router.use('/contact', require('./contact.routes'))
+router.use('/account', require('./account.routes'))
 
 module.exports = router

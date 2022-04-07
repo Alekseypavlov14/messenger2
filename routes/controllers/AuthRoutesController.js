@@ -5,13 +5,6 @@ class AuthRoutesController {
     async register(req, res) {
         const { login, password } = req.body
 
-        const hashedPassword = bcrypt.hashSync(password, 7)
-
-        const user = new User({
-            login: login, 
-            password: hashedPassword
-        })
-
         const candidate = await User.findOne({login: login})
 
         if (candidate) {
@@ -19,6 +12,13 @@ class AuthRoutesController {
                 message: 'This user is already exists'
             })
         }
+
+        const hashedPassword = bcrypt.hashSync(password, 7)
+
+        const user = new User({
+            login: login, 
+            password: hashedPassword
+        })
 
         await user.save()
         res.json(user)

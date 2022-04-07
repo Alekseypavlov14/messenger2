@@ -44,3 +44,30 @@
     border-radius: 1rem;
     box-sizing: border-box;
 }
+
+.account__danger-zone {
+    width: 100%;
+    padding: 20px;
+    background: #fff;
+    margin-top: 10px;
+}
+
+.account__exit,  .account__delete{
+    width: 100%;
+}
+
+.account__delete {
+    margin-top: 20px;
+}
+
+.account__exit-button, .account__delete-button {
+    display: block;
+    height: 30px;
+    padding: 0px 10px;
+    border-radius: 1rem;
+    background: transparent;
+
+    border: 1px solid tomato;
+    font-size: 18px;
+    color: tomato;
+}

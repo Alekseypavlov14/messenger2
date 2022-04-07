@@ -1,23 +1,14 @@
-import React, { useEffect, useRef, useState } from 'react'
-import './account.css'
+import React, { useState } from 'react'
+import { deleteAccount, leaveAccount } from './AccountPage-actions'
+import './AccountPage.css'
 
 const AccountPage = () => {
     const user = JSON.parse(localStorage.getItem('user'))
     const [login, setLogin] = useState(user.login)
 
-    const LoginInput = useRef(null)
- 
     function changeHandler(e) {
         setLogin(e.target.value)
     }
-
-    useEffect(() => {
-        if (login !== user.login) {
-            LoginInput.current.style.border = '1px solid tomato'
-        } else {
-            LoginInput.current.style.border = 'none'
-        }
-    }, [login])
 
     return (
         <div className='account'>
@@ -40,10 +31,30 @@ const AccountPage = () => {
                         className='account__data__login__input'
                         onChange={changeHandler}
                         id='#login-input'
-                        ref={LoginInput}
                         value={login}
                         type='text'
+                        disabled
                     />
+                </div>
+            </div>
+
+            <div className='account__danger-zone'>
+                <div className='account__exit'>
+                    <button 
+                        className='account__exit-button'
+                        onClick={() => leaveAccount()}
+                    >
+                        Leave from the account
+                    </button>
+                </div>
+
+                <div className='account__delete'>
+                    <button 
+                        className='account__delete-button'
+                        onClick={() => deleteAccount(user)}
+                    >
+                        Delete the account 
+                    </button>
                 </div>
             </div>
         </div>
