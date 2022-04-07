@@ -107,10 +107,12 @@ const HomePage = () => {
         if (contact) {
             setActiveChat(chats.filter(chat => chat.login === contact)[0])
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [chats])
 
     useEffect(() => {
         sortMessages(messages)
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [messages])
 
     if (activeChat) {

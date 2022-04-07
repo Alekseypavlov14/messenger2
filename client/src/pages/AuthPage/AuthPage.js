@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
+import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import Auth from '../../modules/auth/Auth.controller'
-import { useNavigate } from 'react-router'
 import './Auth.css'
 
 const AuthPage = ({type}) => {
