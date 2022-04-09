@@ -2,6 +2,10 @@
 
 ## Version 1.4.0
 
+Date: 09.04.2022  
+New: 
+1) Add user module (centralized access to user data)
+
 ## Version 1.3.0
 
 Date: 07.04.2022  
