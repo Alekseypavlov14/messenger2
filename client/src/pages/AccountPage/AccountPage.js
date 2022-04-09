@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { deleteAccount, leaveAccount } from './AccountPage-actions'
+import { User } from './../../modules/user/user'
 import './AccountPage.css'
 
 const AccountPage = () => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = User.get()
     const [login, setLogin] = useState(user.login)
 
     function changeHandler(e) {

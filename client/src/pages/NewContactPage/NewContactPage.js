@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
 import HttpController from './../../modules/http/Http.controller'
 import Candidate from './../../components/candidate/Candidate'
+import { User } from './../../modules/user/user'
 import './NewChatPage.css'
 
 const NewContactPage = ({ setActiveChat }) => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = User.get()
     const [candidates, setCandidates] = useState([])
     const [value, setValue] = useState('')
 

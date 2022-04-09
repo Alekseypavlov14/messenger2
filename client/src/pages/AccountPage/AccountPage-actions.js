@@ -1,7 +1,8 @@
-import HttpController from "../../modules/http/Http.controller";
+import HttpController from "../../modules/http/Http.controller"
+import { User } from "../../modules/user/user"
 
 function deleteAccount(user) { 
-    localStorage.removeItem('user')
+    User.delete()
 
     HttpController.post('/account/delete', {
         user: user
@@ -12,7 +13,7 @@ function deleteAccount(user) {
 }
 
 function leaveAccount() {
-    localStorage.removeItem('user')
+    User.delete()
     window.location.href = '/'
 }
 

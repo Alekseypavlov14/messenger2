@@ -1,11 +1,12 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
+import { User } from '../../modules/user/user'
 import Message from '../../components/message/Message'
 import './ChatPage.css'
 
 const ChatPage = ({ chat, onClose, ws }) => {
-    const user = JSON.parse(localStorage.getItem('user'))
+    const user = User.get()
     const [newMessageText, setNewMessageText] = useState('')
 
     const [messages, setMessages] = useState(chat.messages.sort((a, b) => {

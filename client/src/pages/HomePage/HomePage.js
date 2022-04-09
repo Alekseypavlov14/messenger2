@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import { NewContactPage } from '../NewContactPage/index'
 import { ChatPage } from '../ChatPage/index'
 import Chat from '../../components/chat/Chat'
+import { User } from '../../modules/user/user'
 import './Home.css'
 
 const HomePage = () => {
@@ -27,7 +28,7 @@ const HomePage = () => {
     ws.onopen = () => {
         ws.send(JSON.stringify({
             event: 'message/connect',
-            user: JSON.parse(localStorage.getItem('user')) || {}
+            user: User.get() || {}
         }))
 
         ws.onmessage = (message) => {
@@ -40,7 +41,7 @@ const HomePage = () => {
 
                 case 'message/send':
                     setChats(chats => {
-                        const user = JSON.parse(localStorage.getItem('user'))
+                        const user = User.get()
 
                         chats.forEach(chat => {
                             if (chat.login === user.login) {
@@ -64,7 +65,7 @@ const HomePage = () => {
 
     function getContactsFromMessages(messages) {
         const contacts = []
-        const user = JSON.parse(localStorage.getItem('user'))
+        const user = User.get()
 
         messages.forEach(message => {
             // take login of contact
@@ -90,7 +91,7 @@ const HomePage = () => {
         })
 
         messages.forEach(message => {
-            const user = JSON.parse(localStorage.getItem('user'))
+            const user = User.get()
             const opponent = (message.to === user.login) ? message.from : message.to
 
             contacts.forEach(contact => {

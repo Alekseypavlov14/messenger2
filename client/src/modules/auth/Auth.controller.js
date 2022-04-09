@@ -1,4 +1,5 @@
 import Http from "../http/Http.controller"
+import { User } from "../user/user"
 import Valid from '../valid/Valid.controller'
 
 class Auth {
@@ -25,7 +26,7 @@ class Auth {
     }
 
     saveUser(user) {
-        localStorage.setItem('user', JSON.stringify(user))
+        User.set(user)
     }
 }
 
