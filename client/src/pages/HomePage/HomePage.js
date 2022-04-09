@@ -37,6 +37,7 @@ const HomePage = () => {
             switch (message.event) {
                 case 'message/connect':
                     setMessages(message.messages)
+                    console.log(message.chats)
                     break
 
                 case 'message/send':
