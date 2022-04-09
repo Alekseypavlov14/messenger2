@@ -1,5 +1,7 @@
 # CHANGELOG
 
+## Version 1.4.0
+
 ## Version 1.3.0
 
 Date: 07.04.2022  
