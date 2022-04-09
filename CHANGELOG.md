@@ -2,7 +2,7 @@
 
 ## Version 1.3.0
 
-Date: 07.04.2022
+Date: 07.04.2022  
 New:
 1) Realize deleting and leaving account
 2) Change styles in new chat page
@@ -13,7 +13,7 @@ New:
 
 ## Version 1.2.0
 
-Date: 05.04.2022
+Date: 05.04.2022  
 New:
 1) Hash passwords
 2) Refactor routing (create controllers)
@@ -23,7 +23,7 @@ New:
 
 ## Version 1.1.1
 
-Date: 02.04.2022
+Date: 02.04.2022  
 New:
 1) Refactor NewContactPage 
 2) Change styles of messages (time)
@@ -32,7 +32,7 @@ New:
 
 ## Version: 1.1.0
 
-Date: 02.04.2022
+Date: 02.04.2022  
 New:
 1) Render time when messages were sent
 2) Scroll messages when chat is opened
@@ -40,12 +40,12 @@ New:
 
 ## Version: 1.0.1
 
-Date: 29.03.2022
+Date: 29.03.2022  
 New:
 1) Change some style
 
 ## Version: 1.0.0
 
-Date: 28.03.2022
+Date: 28.03.2022  
 New: 
 1) Basic messenger
