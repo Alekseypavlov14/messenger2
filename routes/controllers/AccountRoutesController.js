@@ -1,5 +1,6 @@
 const User = require('./../../models/User')
 const Message = require('./../../models/Message')
+const Chat = require('../../models/Chat')
 
 class AccountRoutesController {
     async delete(req, res) {
@@ -16,6 +17,14 @@ class AccountRoutesController {
 
         outgoingMessages.forEach(message => {
             Message.findOneAndDelete(message)
+        })
+
+        const chats = await Chat.find({
+            users: user._id
+        })
+
+        chats.forEach(chat => {
+            Chat.findOneAndDelete(chat)
         })
 
         res.json({
