@@ -22,7 +22,7 @@ async function initChat(chat) {
     initializedChat.messages = await Promise.all(initializedChat.messages)
 
     // clear users passwords
-    initializedChat.users = initializedChat.users.map(user => user.login)
+    initializedChat.users = initializedChat.users.map(user => user?.login)
 
     return initializedChat
 }
