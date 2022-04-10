@@ -1,8 +1,10 @@
 const User = require('./../../models/User')
+const Chat = require('./../../models/Chat')
+const initChat = require('./../shared/initChat')
 
 class ContactRoutesController {
-    async add(req, res) {
-        const template = req.body.template
+    async find(req, res) {
+        const { template } = req.body
         const regexTemplate = new RegExp(template, 'i')
 
         const users = await User.find({})

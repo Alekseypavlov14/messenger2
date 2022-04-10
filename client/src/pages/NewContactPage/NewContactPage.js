@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import HttpController from './../../modules/http/Http.controller'
 import Candidate from './../../components/candidate/Candidate'
@@ -12,8 +13,9 @@ const NewContactPage = ({ setActiveChat }) => {
     useEffect(() => {
         if (!value) return setCandidates([])
         
-        HttpController.post('/contact/add', {
-            template: value
+        HttpController.post('/contact/find', {
+            template: value,
+            user: user
         }).then(data => {
             setCandidates(data)
         })

@@ -42,6 +42,10 @@ const HomePage = () => {
                 case 'message/send':
                     break
 
+                case 'error':
+                    console.log(message)
+                    break
+
                 default: console.log('DEFAULT CASE')
             }
         }
@@ -64,11 +68,9 @@ const HomePage = () => {
         )
     }
 
-    if (isNewChatPageOpened) {
-        return (
-            <NewContactPage setActiveChat={setActiveChat}/>
-        )
-    }
+    isNewChatPageOpened && (
+        <NewContactPage setActiveChat={setActiveChat}/>
+    )
 
     return (
         <div className='home'>
@@ -86,7 +88,7 @@ const HomePage = () => {
                 {chats.map((chat, index) => (
                     <Chat 
                         key={index} 
-                        {...chat} 
+                        users={chat.users}
                         onClick={() => {
                             setActiveChat(chat)
                         }}
