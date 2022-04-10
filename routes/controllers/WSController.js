@@ -41,16 +41,18 @@ class WSController {
         chat.messages.push(sentMessage._id)
         await chat.save()
 
+        const initializedChat = await initChat(chat)
+
         ws.send(JSON.stringify({
             event: 'message/send',
-            chat: chat
+            chat: initializedChat
         }))
 
         wss.clients.forEach(client => {
             if (client.login === sentMessage.to) {
                 client.send(JSON.stringify({
                     event: 'message/send',
-                    chat: chat
+                    chat: initializedChat
                 }))
             }
         }) 

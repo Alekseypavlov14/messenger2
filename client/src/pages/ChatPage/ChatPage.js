@@ -24,7 +24,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
 
         switch (message.event){
             case 'message/send':
-                setMessages(messages => messages.concat(message.message))
+                setMessages(message.chat.messages)
                 break
 
             case 'error':
