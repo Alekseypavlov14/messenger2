@@ -83,7 +83,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                         onClick={(e) => {
                             const newMessage = {
                                 from: user.login,
-                                to: chat.login,
+                                to: opponent,
                                 isRead: false,
                                 isSend: false,
                                 time: Date.now(),
