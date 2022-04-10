@@ -169,6 +169,4 @@ const HomePage = () => {
     )
 }
 
-export {
-    HomePage
-}
+export { HomePage }
