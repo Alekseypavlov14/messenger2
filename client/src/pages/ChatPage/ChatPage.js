@@ -7,11 +7,10 @@ import './ChatPage.css'
 
 const ChatPage = ({ chat, onClose, ws }) => {
     const user = User.get()
-    const [newMessageText, setNewMessageText] = useState('')
+    const opponent = chat.users.filter(login => login !== user.login)[0]
 
-    const [messages, setMessages] = useState(chat.messages.sort((a, b) => {
-        return new Date(a.time) - new Date(b.time)
-    }))
+    const [newMessageText, setNewMessageText] = useState('')
+    const [messages, setMessages] = useState(chat.messages)
 
     const MessageBoxElement = useRef(null)
 
@@ -53,7 +52,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                     <FontAwesomeIcon icon={ faArrowLeft } />
                 </button>
                 <div className='chat-page__login'>
-                    {chat.login}
+                    {opponent}
                 </div>
             </header>
             <div className='chat-page__messages' ref={MessageBoxElement}>
@@ -63,7 +62,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                             message={message} 
                             key={index} 
                             type={user.login === message.to ?
-                             'incoming' : 'outgoing'}
+                                'incoming' : 'outgoing'}
                         />
                     )
                 })}
@@ -81,7 +80,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                 {/\S/.test(newMessageText) && 
                     <button 
                         className='chat-page__input-field__button'
-                        onClick={async (e) => {
+                        onClick={(e) => {
                             const newMessage = {
                                 from: user.login,
                                 to: chat.login,
@@ -94,7 +93,7 @@ const ChatPage = ({ chat, onClose, ws }) => {
                             ws.send(JSON.stringify({
                                 event: 'message/send',
                                 message: newMessage,
-                                user: user
+                                chat: chat
                             }))
                             
                             setNewMessageText('')

@@ -1,10 +1,14 @@
 import React from 'react'
+import { User } from '../../modules/user/user'
 import './Chat.css'
 
-const Chat = ({login, messages, onClick}) => {
+const Chat = ({users, onClick}) => {
+    const user = User.get()
+    const contactLogin = users.filter(contact => contact !== user.login)[0]
+
     return (
         <div className='chat' onClick={onClick}>
-            {login}
+            {contactLogin}
         </div>
     )
 }

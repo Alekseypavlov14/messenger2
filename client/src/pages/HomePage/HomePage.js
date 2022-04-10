@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { useRedirect } from '../../hooks/useRedirect'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
@@ -11,11 +11,11 @@ import './Home.css'
 
 const HomePage = () => {
     useRedirect()
-    const [messages, setMessages] = useState([])
-    const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
     const [isNewChatPageOpened, setNewChatPageOpened] = useState(false)
     const navigate = useNavigate()
+
+    const [chats, setChats] = useState([])
 
     const websocket = useRef(new WebSocket(
         window.location.origin
@@ -36,22 +36,10 @@ const HomePage = () => {
 
             switch (message.event) {
                 case 'message/connect':
-                    setMessages(message.messages)
-                    console.log(message.chats)
+                    setChats(message.chats)
                     break
 
                 case 'message/send':
-                    setChats(chats => {
-                        const user = User.get()
-
-                        chats.forEach(chat => {
-                            if (chat.login === user.login) {
-                                chat.messages.push(message)
-                            }
-                        })
-
-                        return chats
-                    })
                     break
 
                 default: console.log('DEFAULT CASE')
@@ -63,59 +51,6 @@ const HomePage = () => {
         console.log(error)
         ws.close()
     }
-
-    function getContactsFromMessages(messages) {
-        const contacts = []
-        const user = User.get()
-
-        messages.forEach(message => {
-            // take login of contact
-            const opponent = (message.to === user.login) ? message.from : message.to
-
-            // add login to chats array
-            if (!contacts.includes(opponent)) {
-                contacts.push(opponent)
-            }
-        })
-
-        return contacts
-    }
-
-    function sortMessages(messages) {
-        let contacts = getContactsFromMessages(messages)
-
-        contacts = contacts.map(contact => {
-            return {
-                login: contact,
-                messages: []
-            }
-        })
-
-        messages.forEach(message => {
-            const user = User.get()
-            const opponent = (message.to === user.login) ? message.from : message.to
-
-            contacts.forEach(contact => {
-                if (contact.login === opponent) contact.messages.push(message)
-            })
-        })
-
-        setChats(contacts)
-    }
-
-    useEffect(() => {
-        const contact = activeChat?.login
-
-        if (contact) {
-            setActiveChat(chats.filter(chat => chat.login === contact)[0])
-        }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [chats])
-
-    useEffect(() => {
-        sortMessages(messages)
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [messages])
 
     if (activeChat) {
         return (
@@ -149,7 +84,9 @@ const HomePage = () => {
 
             <div className='home__messages'>
                 {chats.map((chat, index) => (
-                    <Chat key={index} {...chat} 
+                    <Chat 
+                        key={index} 
+                        {...chat} 
                         onClick={() => {
                             setActiveChat(chat)
                         }}

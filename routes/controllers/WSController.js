@@ -32,22 +32,37 @@ class WSController {
         const sentMessage = new Message(message.message)
 
         sentMessage.isSend = true
+        await sentMessage.save()
+
+        // get users
+        const logins = message.chat.users
+        const userPromises = logins.map(login => User.findOne({ login }))
+        const users = await Promise.all(userPromises)
+
+        const ids = users.map(user => user._id)
+
+        const chat = await Chat.findOne({
+            users: ids
+        })
+
+        chat.messages.push(sentMessage._id)
+        await chat.save()
 
         ws.send(JSON.stringify({
             event: 'message/send',
-            message: sentMessage
+            message: sentMessage,
+            chat: chat
         }))
 
         wss.clients.forEach(client => {
             if (client.login === sentMessage.to) {
                 client.send(JSON.stringify({
                     event: 'message/send',
-                    message: sentMessage
+                    message: sentMessage,
+                    chat: chat
                 }))
             }
         }) 
-
-        await sentMessage.save()
     }
 
     async initChat(chat) {
@@ -68,6 +83,9 @@ class WSController {
 
         initializedChat.users = await Promise.all(initializedChat.users)
         initializedChat.messages = await Promise.all(initializedChat.messages)
+
+        // clear users passwords
+        initializedChat.users = initializedChat.users.map(user => user.login)
 
         return initializedChat
     }
