@@ -25,8 +25,8 @@ const NewContactPage = ({ setActiveChat }) => {
         HttpController.post('/contact/write', {
             candidate: candidate,
             user: user
-        }).then(chat => {
-            setActiveChat(chat)
+        }).then(data => {
+            setActiveChat(data.chat)
         })
     }
 

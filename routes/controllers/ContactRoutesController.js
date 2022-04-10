@@ -15,14 +15,13 @@ class ContactRoutesController {
 
     async write(req, res) {
         const {user, candidate} = req.body
-        console.log(user, candidate)
         
         const chatCandidate = await Chat.findOne({
-            users: [candidate._id, user._id]
+            users: {$all: [candidate._id, user._id]}
         })
 
         if (chatCandidate) return res.json({
-            chat: chatCandidate
+            chat: await initChat(chatCandidate)
         })
 
         const newChat = new Chat({
@@ -33,7 +32,7 @@ class ContactRoutesController {
         await newChat.save()
 
         res.json({
-            chat: newChat
+            chat: await initChat(chatCandidate)
         })
     }
 }
