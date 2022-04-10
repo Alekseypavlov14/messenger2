@@ -21,15 +21,6 @@
     font-size: 18px;
 }
 
-.new-contact-page__candidate {
-    width: 260px;
-    margin: 0 auto;
-    height: 30px;
-    font-size: 18px;
-    border-bottom: 1px solid #bbb;
-    margin-top: 10px;
-}
-
 .new-contact-page__not-found-holder {
     text-align: center;
     color: #555;

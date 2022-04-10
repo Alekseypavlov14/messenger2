@@ -13,4 +13,4 @@ const Chat = ({users, onClick}) => {
     )
 }
 
-export default Chat
+export { Chat }

@@ -11,4 +11,4 @@ const Candidate = ({ candidate, onClick }) => {
     )
 }
 
-export default Candidate
+export { Candidate }
