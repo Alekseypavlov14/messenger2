@@ -2,7 +2,7 @@ import React, { useState, useRef, useEffect } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { User } from '../../modules/user/user'
-import Message from '../../components/message/Message'
+import { Message } from '../../components/message/index'
 import './ChatPage.css'
 
 const ChatPage = ({ chat, onClose, ws }) => {

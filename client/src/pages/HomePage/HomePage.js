@@ -5,7 +5,7 @@ import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { useNavigate } from 'react-router-dom'
 import { NewContactPage } from '../NewContactPage/index'
 import { ChatPage } from '../ChatPage/index'
-import Chat from '../../components/chat/Chat'
+import { Chat } from '../../components/chat/index'
 import { User } from '../../modules/user/user'
 import './Home.css'
 

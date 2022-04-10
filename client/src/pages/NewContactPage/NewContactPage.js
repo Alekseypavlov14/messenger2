@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import HttpController from './../../modules/http/Http.controller'
-import Candidate from './../../components/candidate/Candidate'
+import { Candidate } from './../../components/candidate/index'
 import { User } from './../../modules/user/user'
 import './NewChatPage.css'
 
