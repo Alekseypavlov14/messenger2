@@ -21,6 +21,15 @@ const NewContactPage = ({ setActiveChat }) => {
         })
     }, [value])
 
+    function openChat(candidate) {
+        HttpController.post('/contact/write', {
+            candidate: candidate,
+            user: user
+        }).then(chat => {
+            setActiveChat(chat)
+        })
+    }
+
     return (
         <div className='new-contact-page'>
             <div className='new-contact-page__search'>
@@ -37,7 +46,7 @@ const NewContactPage = ({ setActiveChat }) => {
                     return (
                         <Candidate 
                             candidate={candidate} 
-                            setActiveChat={setActiveChat} 
+                            onClick={() => openChat(candidate)}
                             key={index}
                         />
                     )

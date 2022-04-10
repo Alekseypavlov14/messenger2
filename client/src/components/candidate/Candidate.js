@@ -1,15 +1,10 @@
 import React from 'react'
 
-const Candidate = ({candidate, setActiveChat}) => {
+const Candidate = ({ candidate, onClick }) => {
     return (
         <div 
             className='new-contact-page__candidate'
-            onClick={() => {
-                setActiveChat({
-                    login: candidate.login, 
-                    messages: []
-                })
-            }}
+            onClick={onClick}
         >
             {candidate.login}
         </div>

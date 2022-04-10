@@ -68,9 +68,11 @@ const HomePage = () => {
         )
     }
 
-    isNewChatPageOpened && (
-        <NewContactPage setActiveChat={setActiveChat}/>
-    )
+    if (isNewChatPageOpened) {
+        return (
+            <NewContactPage setChats={setChats} setActiveChat={setActiveChat}/>
+        )
+    }
 
     return (
         <div className='home'>
