@@ -10,7 +10,7 @@ class WSController {
         const user = await User.findOne({login: message.user.login})
 
         const chats = await Chat.find({
-            users: user
+            users: user._id
         })
 
         const chatPromises = chats.map(chat => initChat(chat))
