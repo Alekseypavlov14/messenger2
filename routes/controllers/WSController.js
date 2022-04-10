@@ -7,7 +7,7 @@ class WSController {
     async connect(message, ws, wss) {
         ws.login = message.user.login
 
-        const user = await User.findOne({login: user.login})
+        const user = await User.findOne({login: message.user.login})
 
         const chats = await Chat.find({
             users: user
