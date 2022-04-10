@@ -28,7 +28,7 @@ const HomePage = () => {
     ws.onopen = () => {
         ws.send(JSON.stringify({
             event: 'message/connect',
-            user: User.get() || {}
+            user: User.get()
         }))
 
         ws.onmessage = (message) => {

@@ -7,8 +7,10 @@ class WSController {
     async connect(message, ws, wss) {
         ws.login = message.user.login
 
+        const user = await User.findOne({login: user.login})
+
         const chats = await Chat.find({
-            users: await User.findOne({login: message.user.login})
+            users: user
         })
 
         const chatPromises = chats.map(chat => initChat(chat))
