@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { deleteAccount, leaveAccount } from './AccountPage-actions'
+import { deleteAccount, leaveAccount } from './AccountPage.logic'
 import { User } from './../../modules/user/user'
 import './AccountPage.css'
 

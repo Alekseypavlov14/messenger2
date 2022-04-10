@@ -6,49 +6,30 @@ import { useNavigate } from 'react-router-dom'
 import { NewContactPage } from '../NewContactPage/index'
 import { ChatPage } from '../ChatPage/index'
 import { Chat } from '../../components/chat/index'
-import { User } from '../../modules/user/user'
+import { init, connect, messageHandler } from './HomePage.logic'
 import './Home.css'
 
 const HomePage = () => {
     useRedirect()
+    const [chats, setChats] = useState([])
     const [activeChat, setActiveChat] = useState(null)
     const [isNewChatPageOpened, setNewChatPageOpened] = useState(false)
     const navigate = useNavigate()
 
-    const [chats, setChats] = useState([])
-
-    const websocket = useRef(new WebSocket(
-        window.location.origin
-        .replace(/https/, 'wss')
-        .replace(/http/, 'ws')
-        .replace('3000', '5000')
-    ))
+    const websocket = useRef(init())
     const ws = websocket.current
 
     ws.onopen = () => {
-        ws.send(JSON.stringify({
-            event: 'message/connect',
-            user: User.get()
-        }))
+        connect(ws)
 
         ws.onmessage = (message) => {
             message = JSON.parse(message.data)
 
-            switch (message.event) {
-                case 'message/connect':
+            messageHandler(message.event, {
+                connect: () => {
                     setChats(message.chats)
-                    break
-
-                case 'message/send':
-                    setChats(prev => prev.concat([message.chat]))
-                    break
-
-                case 'error':
-                    console.log(message)
-                    break
-
-                default: console.log('DEFAULT CASE')
-            }
+                }
+            })
         }
     }
 

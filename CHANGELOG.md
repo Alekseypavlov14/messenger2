@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Version 1.4.1
+
+Date: 10.04.2022
+New:
+1) Replace HomePage login to the new file
+
 ## Version 1.4.0
 
 Date: 09.04.2022  
