@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useRedirect } from '../../hooks/useRedirect'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
+import { useRedirect } from '../../hooks/useRedirect'
 import { useNavigate } from 'react-router-dom'
 import { NewContactPage } from '../NewContactPage/index'
 import { ChatPage } from '../ChatPage/index'
@@ -40,6 +40,7 @@ const HomePage = () => {
                     break
 
                 case 'message/send':
+                    setChats(prev => prev.concat([message.chat]))
                     break
 
                 case 'error':

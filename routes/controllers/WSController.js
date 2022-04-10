@@ -7,9 +7,6 @@ class WSController {
     async connect(message, ws, wss) {
         ws.login = message.user.login
 
-        const incoming = await Message.find({to: ws.login})
-        const outgoing = await Message.find({from: ws.login})
-
         const chats = await Chat.find({
             users: await User.findOne({login: message.user.login})
         })
@@ -18,11 +15,8 @@ class WSController {
 
         const initializedChats = await Promise.all(chatPromises)
 
-        const messages = incoming.concat(outgoing)
-
         ws.send(JSON.stringify({
             event: 'message/connect',
-            messages: messages,
             chats: initializedChats
         }))
     }
@@ -49,7 +43,6 @@ class WSController {
 
         ws.send(JSON.stringify({
             event: 'message/send',
-            message: sentMessage,
             chat: chat
         }))
 
@@ -57,7 +50,6 @@ class WSController {
             if (client.login === sentMessage.to) {
                 client.send(JSON.stringify({
                     event: 'message/send',
-                    message: sentMessage,
                     chat: chat
                 }))
             }
