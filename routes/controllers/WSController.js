@@ -16,9 +16,7 @@ class WSController {
 
         const chatPromises = chats.map(chat => initChat(chat))
 
-        const initializedChats = await Promise.all(chatPromises).then(values => {
-            return values
-        })
+        const initializedChats = await Promise.all(chatPromises)
 
         const messages = incoming.concat(outgoing)
 

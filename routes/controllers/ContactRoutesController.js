@@ -32,7 +32,7 @@ class ContactRoutesController {
         await newChat.save()
 
         res.json({
-            chat: await initChat(chatCandidate)
+            chat: await initChat(newChat)
         })
     }
 }
