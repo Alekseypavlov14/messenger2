@@ -31,8 +31,10 @@ class ContactRoutesController {
 
         await newChat.save()
 
+        const initializedChat = await initChat(newChat)
+
         res.json({
-            chat: await initChat(newChat)
+            chat: initializedChat
         })
     }
 }
