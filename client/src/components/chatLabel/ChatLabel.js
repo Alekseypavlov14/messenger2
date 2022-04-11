@@ -1,10 +1,10 @@
 import React from 'react'
 import { User } from '../../modules/user/user'
-import './Chat.css'
+import './ChatLabel.css'
 
-const Chat = ({users, onClick}) => {
+const ChatLabel = ({chat, onClick}) => {
     const user = User.get()
-    const contactLogin = users.filter(contact => contact !== user.login)[0]
+    const contactLogin = chat.users.filter(contact => contact !== user.login)[0]
 
     return (
         <div className='chat' onClick={onClick}>
@@ -13,4 +13,4 @@ const Chat = ({users, onClick}) => {
     )
 }
 
-export { Chat }
+export { ChatLabel }

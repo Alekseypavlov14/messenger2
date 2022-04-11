@@ -36,6 +36,7 @@ const NewContactPage = ({ setActiveChat }) => {
                 <input 
                     className='new-contact-page__search__input' 
                     onChange={e => setValue(e.target.value)}
+                    placeholder='Search...'
                     type='text' 
                 />
             </div>
@@ -51,6 +52,7 @@ const NewContactPage = ({ setActiveChat }) => {
                         />
                     )
                 })}
+                
                 {candidates.length === 0 &&
                 value !== '' && (
                     <div className='new-contact-page__not-found-holder'>

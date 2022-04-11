@@ -1,78 +1,35 @@
-import React, { useRef, useState } from 'react'
+import React from 'react'
+import { useActiveChat } from '../../hooks/useActiveChat'
+import { useRedirect } from '../../hooks/useRedirect'
+import { ChatLabel } from '../../components/chatLabel/index'
+import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
-import { useRedirect } from '../../hooks/useRedirect'
-import { useNavigate } from 'react-router-dom'
-import { NewContactPage } from '../NewContactPage/index'
-import { ChatPage } from '../ChatPage/index'
-import { Chat } from '../../components/chat/index'
-import { init, connect, messageHandler } from './HomePage.logic'
-import './Home.css'
+import './HomePage.css'
 
-const HomePage = () => {
+const HomePage = ({ chats, setActiveChat }) => {
     useRedirect()
-    const [chats, setChats] = useState([])
-    const [activeChat, setActiveChat] = useState(null)
-    const [isNewChatPageOpened, setNewChatPageOpened] = useState(false)
-    const navigate = useNavigate()
-
-    const websocket = useRef(init())
-    const ws = websocket.current
-
-    ws.onopen = () => {
-        connect(ws)
-
-        ws.onmessage = (message) => {
-            message = JSON.parse(message.data)
-
-            messageHandler(message.event, {
-                connect: () => {
-                    setChats(message.chats)
-                }
-            })
-        }
-    }
-
-    ws.onerror = (error) => {
-        console.log(error)
-        ws.close()
-    }
-
-    if (activeChat) {
-        return (
-            <ChatPage 
-                chat={activeChat} 
-                ws={ws}
-                onClose={() => {
-                    setActiveChat(null)
-                }}
-            />
-        )
-    }
-
-    if (isNewChatPageOpened) {
-        return (
-            <NewContactPage setChats={setChats} setActiveChat={setActiveChat}/>
-        )
-    }
+    useActiveChat()
 
     return (
         <div className='home'>
             <header className='home__header'>
-                <button
+
+                <Link
                     className='home__header__account'
-                    onClick={() => navigate('/account')}
+                    to='/account'
                 >
                     <FontAwesomeIcon icon={faBars} />
-                </button>
+                </Link>
+
                 <div className='home__header__title'>Web Messenger</div>
             </header>
 
-            <div className='home__messages'>
+            <div className='home__chats'>
                 {chats.map((chat, index) => (
-                    <Chat 
+                    <ChatLabel 
                         key={index} 
-                        users={chat.users}
+                        chat={chat}
                         onClick={() => {
                             setActiveChat(chat)
                         }}
@@ -80,14 +37,12 @@ const HomePage = () => {
                 ))}
             </div>
 
-            <button 
+            <Link 
                 className='home__write-button'
-                onClick={() => {
-                    setNewChatPageOpened(true)
-                }}
+                to='/new-chat'
             >
                 <FontAwesomeIcon icon={faPencil} />
-            </button>
+            </Link>
         </div>
     )
 }
