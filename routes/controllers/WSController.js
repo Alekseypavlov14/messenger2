@@ -17,9 +17,11 @@ class WSController {
 
         const initializedChats = await Promise.all(chatPromises)
 
+        const filteredChats = initializedChats.filter(chat => Boolean(chat))
+
         ws.send(JSON.stringify({
             event: 'message/connect',
-            chats: initializedChats
+            chats: filteredChats
         }))
     }
 
@@ -44,6 +46,11 @@ class WSController {
         await chat.save()
 
         const initializedChat = await initChat(chat)
+
+        if (!initializedChat) return ws.send(JSON.stringify({
+            event: 'error',
+            error: 'user is not defined'
+        }))
 
         ws.send(JSON.stringify({
             event: 'message/send',

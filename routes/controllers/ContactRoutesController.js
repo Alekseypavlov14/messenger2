@@ -20,8 +20,10 @@ class ContactRoutesController {
             users: {$all: [candidate._id, user._id]}
         })
 
-        if (chatCandidate) return res.json({
-            chat: await initChat(chatCandidate)
+        const chat = await initChat(chatCandidate)
+
+        if (chat) return res.json({
+            chat: chat
         })
 
         const newChat = new Chat({
@@ -29,9 +31,15 @@ class ContactRoutesController {
             messages: []
         })
 
-        await newChat.save()
-
         const initializedChat = await initChat(newChat)
+
+        if (!initializedChat) return res.json({
+            event: 'message/error',
+            error: 'user is not defined'
+        })
+
+        // if chat is ok - save it
+        await newChat.save()
 
         res.json({
             chat: initializedChat
