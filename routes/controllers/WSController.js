@@ -28,30 +28,28 @@ class WSController {
     async send(message, ws, wss) {
         const sentMessage = new Message(message.message)
 
+        // save message
         sentMessage.isSend = true
         await sentMessage.save()
 
-        // get users
-        const logins = message.chat.users
-        const userPromises = logins.map(login => User.findOne({ login }))
-        const users = await Promise.all(userPromises)
+        // get chat by id
+        const chat = await Chat.findById(message.chat._id)
 
-        const ids = users.map(user => user._id)
+        // check chat
+        if (!chat) return ws.send(JSON.stringify({
+            event: 'error',
+            error: 'there is not this chat'
+        }))
 
-        const chat = await Chat.findOne({
-            users: ids
-        })
-
+        // add to DB chat message _id
         chat.messages.push(sentMessage._id)
         await chat.save()
 
-        const initializedChat = await initChat(chat)
+        // add message to initialized chat
+        const initializedChat = message.chat
+        initializedChat.messages.push(sentMessage)
 
-        if (!initializedChat) return ws.send(JSON.stringify({
-            event: 'error',
-            error: 'user is not defined'
-        }))
-
+        // send chat to users
         ws.send(JSON.stringify({
             event: 'message/send',
             chat: initializedChat

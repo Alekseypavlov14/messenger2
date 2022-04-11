@@ -4,6 +4,7 @@ const Chat = require('./../../models/Chat')
 
 async function initChat(chat) {
     const initializedChat = {
+        _id: chat._id,
         users: [],
         messages: []
     }
