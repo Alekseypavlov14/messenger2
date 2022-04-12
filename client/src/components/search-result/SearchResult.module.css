@@ -1,0 +1,9 @@
+.SearchResult {
+    width: 100%;
+}
+
+.NoResult {
+    text-align: center;
+    margin-top: 5px;
+    color: #555;
+}

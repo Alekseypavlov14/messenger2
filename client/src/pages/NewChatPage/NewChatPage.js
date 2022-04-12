@@ -1,8 +1,9 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useActiveChat } from '../../hooks/useActiveChat'
+import { ExitButton } from './../../components/exit-button/index'
+import { SearchResult } from '../../components/search-result'
 import { http } from '../../modules/http/Http.controller'
-import { UserLabel } from '../../components/user-label/index'
 import { User } from '../../modules/user/user'
 import './NewChatPage.css'
 
@@ -35,6 +36,7 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
     return (
         <div className='new-chat-page'>
             <div className='new-chat-page__search'>
+                <ExitButton className='new-chat-page__exit-button' />
                 <input 
                     className='new-chat-page__search__input' 
                     onChange={e => setValue(e.target.value)}
@@ -44,23 +46,11 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
             </div>
 
             <div className='new-chat-page__results'>
-                {users.map((candidate, index) => {
-                    if (candidate.login === user.login) return false
-                    return (
-                        <UserLabel
-                            user={candidate} 
-                            onClick={() => openChat(candidate)}
-                            key={index}
-                        />
-                    )
-                })}
-                
-                {users.length === 0 &&
-                value !== '' && (
-                    <div className='new-chat-page__not-found-holder'>
-                        Users not found
-                    </div>
-                )}
+                <SearchResult 
+                    choose={openChat}
+                    request={value} 
+                    users={users} 
+                />
             </div>
         </div>
     )
