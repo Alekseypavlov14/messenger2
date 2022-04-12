@@ -11,9 +11,7 @@ class ChatRoutesController {
             login: { $regex: regexTemplate }
         })
 
-        const logins = users.map(user => user.login)
-
-        res.json(logins)
+        res.json(users)
     }
 
     async write(req, res) {
@@ -23,11 +21,17 @@ class ChatRoutesController {
             users: {$all: [candidate._id, user._id]}
         })
 
-        const chat = await initChat(chatCandidate)
+        if (chatCandidate) {
+            const chat = await initChat(chatCandidate)
 
-        if (chat) return res.json({
-            chat: chat
-        })
+            if (chat) return res.json({
+                chat: chat
+            })
+
+            return res.json({
+                error: 'This chat is broken'
+            })
+        }
 
         const newChat = new Chat({
             users: [user, candidate],
@@ -36,17 +40,15 @@ class ChatRoutesController {
 
         const initializedChat = await initChat(newChat)
 
-        if (!initializedChat) return res.json({
-            event: 'message/error',
-            error: 'user is not defined'
-        })
-
-        // if chat is ok - save it
         await newChat.save()
 
         res.json({
             chat: initializedChat
         })
+    }
+
+    async get(req, res) {
+        
     }
 }
 

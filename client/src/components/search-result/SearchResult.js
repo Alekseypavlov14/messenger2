@@ -6,14 +6,14 @@ import styles from './SearchResult.module.css'
 const SearchResult = ({ request, users, choose }) => {
     const user = User.get()
 
-    const filteredUsers = users.filter(candidate => candidate !== user.login)
+    const filteredUsers = users.filter(candidate => candidate.login !== user.login)
 
     return (
         <div className={styles.SearchResult}>
             {filteredUsers.map((user, index) => (
                 <UserLabel 
                     onClick={() => choose(user)}
-                    login={user} 
+                    login={user.login} 
                     key={index} 
                 />
             ))}

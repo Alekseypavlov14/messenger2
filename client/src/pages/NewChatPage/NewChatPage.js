@@ -20,12 +20,13 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
             template: value,
             user: user
         }).then(data => {
+            if (data.error) return console.log(data.error)
             setUsers(data)
         })
     }, [value])
 
     function openChat(candidate) {
-        http.post('/contact/write', {
+        http.post('/chat/write', {
             candidate: candidate,
             user: user
         }).then(data => {

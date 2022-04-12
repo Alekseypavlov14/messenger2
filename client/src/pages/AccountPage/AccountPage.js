@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { deleteAccount, leaveAccount } from './AccountPage.logic'
+import { deleteAccount, leaveAccount } from './AccountPage.model'
 import { ExitButton } from './../../components/exit-button/index'
 import { User } from './../../modules/user/user'
 import './AccountPage.css'
