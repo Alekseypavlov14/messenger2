@@ -48,7 +48,19 @@ class ChatRoutesController {
     }
 
     async get(req, res) {
-        
+        const user = req.body.user
+
+        const chats = await Chat.find({
+            users: user._id
+        })
+
+        const chatPromises = chats.map(chat => initChat(chat))
+        const initializedChats = await Promise.all(chatPromises)
+        const filteredChats = initializedChats.filter(chat => Boolean(chat))
+
+        res.json({
+            chats: filteredChats
+        })
     }
 }
 

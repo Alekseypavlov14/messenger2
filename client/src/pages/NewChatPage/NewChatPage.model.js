@@ -1,6 +1,6 @@
 import { http } from './../../modules/http/Http.controller'
 
-function find(user, value, result) {
+function findUsers(user, value, result) {
     if (!value) return result([])
     
     http.post('/chat/find', {
@@ -20,4 +20,4 @@ function write(user, candidate, result) {
     })
 }
 
-export { find, write }
+export { findUsers, write }

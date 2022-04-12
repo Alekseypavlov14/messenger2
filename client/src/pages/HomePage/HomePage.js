@@ -1,15 +1,17 @@
 import React from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
+import { ChatLabel } from '../../components/chat-label/index'
 import { useActiveChat } from '../../hooks/useActiveChat'
 import { useRedirect } from '../../hooks/useRedirect'
-import { ChatLabel } from '../../components/chat-label/index'
+import { getChats } from './HomePage.model'
 import { Link } from 'react-router-dom'
 import './HomePage.css'
 
-const HomePage = ({ chats, activeChat, setActiveChat }) => {
+const HomePage = ({ chats, setChats, activeChat, setActiveChat }) => {
     useRedirect()
     useActiveChat(activeChat)
+    getChats(setChats)
 
     return (
         <div className='home'>

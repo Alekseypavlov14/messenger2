@@ -1,14 +1,14 @@
 import React, { useState, useRef, useEffect } from 'react'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { useActiveChat } from './../../hooks/useActiveChat'
 import { getOpponent, scroll } from './ChatPage.model'
 import { Messages } from '../../components/messages'
 import { User } from '../../modules/user/user'
+import { useExit } from '../../hooks/useExit'
 import './ChatPage.css'
 
 const ChatPage = ({ activeChat, setActiveChat }) => {
-    useActiveChat(activeChat)
+    useExit(activeChat)
 
     const user = User.get()
     const opponent = getOpponent(activeChat.users)

@@ -4,7 +4,7 @@ import { useActiveChat } from '../../hooks/useActiveChat'
 import { ExitButton } from './../../components/exit-button/index'
 import { SearchResult } from '../../components/search-result'
 import { User } from '../../modules/user/user'
-import { find, write } from './NewChatPage.model'
+import { findUsers, write } from './NewChatPage.model'
 import './NewChatPage.css'
 
 const NewChatPage = ({ activeChat, setActiveChat }) => {
@@ -14,7 +14,7 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
     useActiveChat(activeChat)
 
     useEffect(() => {
-        find(user, value, setUsers)
+        findUsers(user, value, setUsers)
     }, [value])
 
     function openChat(candidate) {
