@@ -1,10 +1,10 @@
 import React from 'react'
-import './UserLabel.css'
+import styles from './UserLabel.module.css'
 
 const UserLabel = ({ user, onClick }) => {
     return (
         <div 
-            className='new-chat-page__user-label'
+            className={styles.Message}
             onClick={onClick}
         >
             {user.login}

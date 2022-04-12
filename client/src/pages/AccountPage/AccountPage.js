@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { deleteAccount, leaveAccount } from './AccountPage.logic'
+import { ExitButton } from './../../components/exit-button/index'
 import { User } from './../../modules/user/user'
 import './AccountPage.css'
 
@@ -15,7 +16,10 @@ const AccountPage = () => {
         <div className='account'>
             <div className='account__header'>
                 <div className='account__title'>
-                    {user.login}
+                    <ExitButton className='account__title__exit-button'/>
+                    <div className='account__title__login'>
+                        {user.login}
+                    </div>
                 </div>
             </div>
 
