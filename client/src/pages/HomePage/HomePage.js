@@ -7,9 +7,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import './HomePage.css'
 
-const HomePage = ({ chats, setActiveChat }) => {
+const HomePage = ({ chats, activeChat, setActiveChat }) => {
     useRedirect()
-    useActiveChat()
+    useActiveChat(activeChat)
 
     return (
         <div className='home'>

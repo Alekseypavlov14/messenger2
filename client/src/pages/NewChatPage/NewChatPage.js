@@ -6,8 +6,8 @@ import { UserLabel } from '../../components/user-label/index'
 import { User } from '../../modules/user/user'
 import './NewChatPage.css'
 
-const NewChatPage = ({ setActiveChat }) => {
-    useActiveChat()
+const NewChatPage = ({ activeChat, setActiveChat }) => {
+    useActiveChat(activeChat)
     const user = User.get()
     const [users, setUsers] = useState([])
     const [value, setValue] = useState('')

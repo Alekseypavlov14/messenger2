@@ -22,8 +22,8 @@ function App() {
           <Route path='/' element={<Root />} />
           <Route path='/register' element={<AuthPage type='register' />}/>
           <Route path='/login' element={<AuthPage type='login' />}/>
-          <Route path='/home' element={<HomePage chats={chats} setActiveChat={setActiveChat} />} />
-          <Route path='/new-chat' element={<NewChatPage setChats={setChats} setActiveChat={setActiveChat}/> } />
+          <Route path='/home' element={<HomePage chats={chats} activeChat={activeChat} setActiveChat={setActiveChat} />} />
+          <Route path='/new-chat' element={<NewChatPage setChats={setChats} activeChat={activeChat} setActiveChat={setActiveChat}/> } />
           <Route path='/chat' element={<ChatPage activeChat={activeChat} />} />
           <Route path='/account' element={<AccountPage />} />
         </Routes>
