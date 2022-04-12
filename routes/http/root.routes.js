@@ -3,6 +3,7 @@ const {Router} = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const RootRoutesController = require('./controllers/RootRoutesController')
+const checkUser = require('../../middleware/checkUser.middleware')
 const clientPath = path.join(__dirname, '..', '..', 'client', 'build')
 
 const router = Router()
@@ -20,7 +21,7 @@ router.get('/chat', (req, res) => RootRoutesController.index(req, res))
 router.get('/account', (req, res) => RootRoutesController.index(req, res))
 
 router.use('/auth', require('./auth.routes'))
-router.use('/chat', require('./chat.routes'))
-router.use('/account', require('./account.routes'))
+router.use('/chat', checkUser, require('./chat.routes'))
+router.use('/account', checkUser, require('./account.routes'))
 
 module.exports = router
