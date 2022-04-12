@@ -13,7 +13,7 @@ const SearchResult = ({ request, users, choose }) => {
             {filteredUsers.map((user, index) => (
                 <UserLabel 
                     onClick={() => choose(user)}
-                    user={user} 
+                    login={user} 
                     key={index} 
                 />
             ))}

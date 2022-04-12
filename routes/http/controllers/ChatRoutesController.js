@@ -7,10 +7,13 @@ class ChatRoutesController {
         const { template } = req.body
         const regexTemplate = new RegExp(template, 'i')
 
-        const users = await User.find({})
-        const candidates = users.filter(user => regexTemplate.test(user.login))
+        const users = await User.find({ 
+            login: { $regex: regexTemplate }
+        })
 
-        res.json(candidates)
+        const logins = users.map(user => user.login)
+
+        res.json(logins)
     }
 
     async write(req, res) {

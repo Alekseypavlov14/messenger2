@@ -1,4 +1,4 @@
-const User = require('../client/src/modules/user/user')
+const User = require('./../models/User')
 
 async function checkUser(req, res, next) {
     const user = req.body.user

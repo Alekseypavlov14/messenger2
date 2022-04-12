@@ -16,7 +16,7 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
     useEffect(() => {
         if (!value) return setUsers([])
         
-        http.post('/contact/find', {
+        http.post('/chat/find', {
             template: value,
             user: user
         }).then(data => {
