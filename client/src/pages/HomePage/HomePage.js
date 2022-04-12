@@ -1,10 +1,10 @@
 import React from 'react'
-import { useActiveChat } from '../../hooks/useActiveChat'
-import { useRedirect } from '../../hooks/useRedirect'
-import { ChatLabel } from '../../components/chatLabel/index'
-import { Link } from 'react-router-dom'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
+import { useActiveChat } from '../../hooks/useActiveChat'
+import { useRedirect } from '../../hooks/useRedirect'
+import { ChatLabel } from '../../components/chat-label/index'
+import { Link } from 'react-router-dom'
 import './HomePage.css'
 
 const HomePage = ({ chats, activeChat, setActiveChat }) => {
