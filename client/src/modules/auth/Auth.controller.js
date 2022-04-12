@@ -1,5 +1,5 @@
-import Http from "../http/Http.controller"
-import { User } from "../user/user"
+import { http } from '../http/Http.controller'
+import { User } from '../user/user'
 import Valid from '../valid/Valid.controller'
 
 class Auth {
@@ -17,7 +17,7 @@ class Auth {
             !( Valid.password(password) )
         ) return console.log('Invalid login or password')
 
-        await Http.post(url, {
+        await http.post(url, {
             login, password
         }).then(data => {
             if (data.message) return console.log(data.message)

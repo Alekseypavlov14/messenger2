@@ -1,10 +1,10 @@
-import HttpController from "../../modules/http/Http.controller"
-import { User } from "../../modules/user/user"
+import { http } from '../../modules/http/Http.controller'
+import { User } from '../../modules/user/user'
 
 function deleteAccount(user) { 
     User.delete()
 
-    HttpController.post('/account/delete', {
+    http.post('/account/delete', {
         user: user
     }).then(data => {
         window.location.href = '/'

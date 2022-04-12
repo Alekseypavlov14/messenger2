@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useActiveChat } from '../../hooks/useActiveChat'
-import HttpController from '../../modules/http/Http.controller'
+import { http } from '../../modules/http/Http.controller'
 import { UserLabel } from '../../components/user-label/index'
 import { User } from '../../modules/user/user'
 import './NewChatPage.css'
@@ -15,7 +15,7 @@ const NewChatPage = ({ setActiveChat }) => {
     useEffect(() => {
         if (!value) return setUsers([])
         
-        HttpController.post('/contact/find', {
+        http.post('/contact/find', {
             template: value,
             user: user
         }).then(data => {
@@ -24,7 +24,7 @@ const NewChatPage = ({ setActiveChat }) => {
     }, [value])
 
     function openChat(candidate) {
-        HttpController.post('/contact/write', {
+        http.post('/contact/write', {
             candidate: candidate,
             user: user
         }).then(data => {

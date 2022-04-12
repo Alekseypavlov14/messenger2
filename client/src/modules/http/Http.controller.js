@@ -18,4 +18,6 @@ class Http {
     }
 }
 
-export default new Http()
+const http = new Http()
+
+export { http }
