@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import Auth from '../../modules/auth/Auth.controller'
 import './Auth.css'
 
-const AuthPage = ({type}) => {
+const AuthPage = ({ type }) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
     const navigate = useNavigate()

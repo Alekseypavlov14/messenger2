@@ -1,11 +1,13 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
+import { useActiveChat } from '../../hooks/useActiveChat'
 import HttpController from './../../modules/http/Http.controller'
 import { Candidate } from './../../components/candidate/index'
 import { User } from './../../modules/user/user'
 import './NewChatPage.css'
 
 const NewContactPage = ({ setActiveChat }) => {
+    useActiveChat()
     const user = User.get()
     const [candidates, setCandidates] = useState([])
     const [value, setValue] = useState('')

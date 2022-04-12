@@ -11,7 +11,7 @@ const messageHandler = require('./routes/websocket.routes')
 // env
 const PORT = process.env.PORT || 5000
 
-// express app
+// index
 app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'))
 })
