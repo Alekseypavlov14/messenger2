@@ -1,5 +1,5 @@
 const path = require('path')
-const clientPath = path.join(__dirname, '..', '..', 'client', 'build')
+const clientPath = path.join(__dirname, '..', '..', '..', 'client', 'build')
 
 class RootRoutesController {
     index(req, res) {

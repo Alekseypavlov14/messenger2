@@ -3,7 +3,7 @@ const {Router} = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const RootRoutesController = require('./controllers/RootRoutesController')
-const clientPath = path.join(__dirname, '..', 'client', 'build')
+const clientPath = path.join(__dirname, '..', '..', 'client', 'build')
 
 const router = Router()
 
