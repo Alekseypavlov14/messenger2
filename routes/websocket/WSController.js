@@ -1,5 +1,5 @@
-const User = require('./../../models/User')
-const Message = require('./../../models/Message')
+const Message = require('../../models/Message')
+const User = require('../../models/User')
 const Chat = require('../../models/Chat')
 const initChat = require('./../shared/initChat')
 

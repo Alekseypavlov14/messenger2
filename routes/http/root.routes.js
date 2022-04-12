@@ -15,9 +15,12 @@ router.get('/', (req, res) => RootRoutesController.index(req, res))
 router.get('/login', (req, res) => RootRoutesController.index(req, res))
 router.get('/register', (req, res) => RootRoutesController.index(req, res))
 router.get('/home', (req, res) => RootRoutesController.index(req, res))
+router.get('/new-chat', (req, res) => RootRoutesController.index(req, res))
+router.get('/chat', (req, res) => RootRoutesController.index(req, res))
+router.get('/account', (req, res) => RootRoutesController.index(req, res))
 
 router.use('/auth', require('./auth.routes'))
-router.use('/contact', require('./contact.routes'))
+router.use('/chat', require('./chat.routes'))
 router.use('/account', require('./account.routes'))
 
 module.exports = router

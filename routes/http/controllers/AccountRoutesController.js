@@ -1,6 +1,6 @@
-const User = require('./../../models/User')
-const Message = require('./../../models/Message')
-const Chat = require('../../models/Chat')
+const User = require('./../../../models/User')
+const Message = require('./../../../models/Message')
+const Chat = require('./../../../models/Chat')
 
 class AccountRoutesController {
     async delete(req, res) {

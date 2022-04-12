@@ -1,9 +1,10 @@
-const User = require('./../models/User')
-const WSController = require('./controllers/WSController')
+const User = require('../../models/User')
+const WSController = require('./WSController')
 
-async function messageHandler(message, ws, wss) {
+async function router(message, ws, wss) {
     message = JSON.parse(message)
 
+    // check user
     const user = await User.findOne(message.user)
     if (!user) return ws.send(JSON.stringify({
         event: 'error',
@@ -23,4 +24,4 @@ async function messageHandler(message, ws, wss) {
     }
 }
 
-module.exports = messageHandler
+module.exports = router

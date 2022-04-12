@@ -4,7 +4,7 @@ import './UserLabel.css'
 const UserLabel = ({ user, onClick }) => {
     return (
         <div 
-            className='new-contact-page__user-label'
+            className='new-chat-page__user-label'
             onClick={onClick}
         >
             {user.login}

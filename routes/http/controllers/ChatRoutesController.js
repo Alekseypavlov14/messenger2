@@ -1,8 +1,8 @@
-const User = require('./../../models/User')
-const Chat = require('./../../models/Chat')
-const initChat = require('./../shared/initChat')
+const User = require('../../../models/User')
+const Chat = require('../../../models/Chat')
+const initChat = require('../../shared/initChat')
 
-class ContactRoutesController {
+class ChatRoutesController {
     async find(req, res) {
         const { template } = req.body
         const regexTemplate = new RegExp(template, 'i')
@@ -47,4 +47,4 @@ class ContactRoutesController {
     }
 }
 
-module.exports = new ContactRoutesController()
+module.exports = new ChatRoutesController()
