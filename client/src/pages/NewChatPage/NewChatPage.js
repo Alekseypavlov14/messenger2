@@ -14,7 +14,7 @@ const NewChatPage = ({ activeChat, setActiveChat }) => {
     useActiveChat(activeChat)
 
     useEffect(() => {
-        find(user, value, setUsers)
+        // find(user, value, setUsers)
     }, [value])
 
     function openChat(candidate) {

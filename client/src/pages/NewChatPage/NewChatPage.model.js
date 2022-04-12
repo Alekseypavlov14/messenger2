@@ -1,4 +1,4 @@
-import { http } from './../../modules/http'
+import { http } from './../../modules/http/Http.controller'
 
 function find(user, value, result) {
     if (!value) return result([])

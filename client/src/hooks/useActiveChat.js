@@ -5,8 +5,7 @@ export function useActiveChat(activeChat) {
     const navigate = useNavigate()
 
     useEffect(() => {
-        if (activeChat) return navigate('/chat')
-        navigate('/home')
+        if (activeChat) navigate('/chat')
         // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [activeChat])
 }
