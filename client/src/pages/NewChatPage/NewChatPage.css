@@ -1,9 +1,9 @@
-.new-contact-page {
+.new-chat-page {
     width: 100%;
     height: 100%;
 }
 
-.new-contact-page__search {
+.new-chat-page__search {
     width: 100%;
     height: 60px;
     display: flex;
@@ -12,14 +12,14 @@
     border-bottom: 1px solid #ddd;
 }
 
-.new-contact-page__search__input {
+.new-chat-page__search__input {
     width: 100%;
     height: 30px;
     padding: 0px 15px;
     font-size: 18px;
 }
 
-.new-contact-page__not-found-holder {
+.new-chat-page__not-found-holder {
     text-align: center;
     color: #555;
     margin-top: 10px;

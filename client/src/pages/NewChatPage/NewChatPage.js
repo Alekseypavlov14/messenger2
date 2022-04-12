@@ -1,25 +1,25 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
 import { useActiveChat } from '../../hooks/useActiveChat'
-import HttpController from './../../modules/http/Http.controller'
-import { Candidate } from './../../components/candidate/index'
-import { User } from './../../modules/user/user'
+import HttpController from '../../modules/http/Http.controller'
+import { UserLabel } from '../../components/user-label/index'
+import { User } from '../../modules/user/user'
 import './NewChatPage.css'
 
-const NewContactPage = ({ setActiveChat }) => {
+const NewChatPage = ({ setActiveChat }) => {
     useActiveChat()
     const user = User.get()
-    const [candidates, setCandidates] = useState([])
+    const [users, setUsers] = useState([])
     const [value, setValue] = useState('')
 
     useEffect(() => {
-        if (!value) return setCandidates([])
+        if (!value) return setUsers([])
         
         HttpController.post('/contact/find', {
             template: value,
             user: user
         }).then(data => {
-            setCandidates(data)
+            setUsers(data)
         })
     }, [value])
 
@@ -33,31 +33,31 @@ const NewContactPage = ({ setActiveChat }) => {
     }
 
     return (
-        <div className='new-contact-page'>
-            <div className='new-contact-page__search'>
+        <div className='new-chat-page'>
+            <div className='new-chat-page__search'>
                 <input 
-                    className='new-contact-page__search__input' 
+                    className='new-chat-page__search__input' 
                     onChange={e => setValue(e.target.value)}
                     placeholder='Search...'
                     type='text' 
                 />
             </div>
 
-            <div className='new-contact-page__results'>
-                {candidates.map((candidate, index) => {
+            <div className='new-chat-page__results'>
+                {users.map((candidate, index) => {
                     if (candidate.login === user.login) return false
                     return (
-                        <Candidate 
-                            candidate={candidate} 
+                        <UserLabel
+                            user={candidate} 
                             onClick={() => openChat(candidate)}
                             key={index}
                         />
                     )
                 })}
                 
-                {candidates.length === 0 &&
+                {users.length === 0 &&
                 value !== '' && (
-                    <div className='new-contact-page__not-found-holder'>
+                    <div className='new-chat-page__not-found-holder'>
                         Users not found
                     </div>
                 )}
@@ -66,4 +66,4 @@ const NewContactPage = ({ setActiveChat }) => {
     )
 }
 
-export { NewContactPage }
+export { NewChatPage }

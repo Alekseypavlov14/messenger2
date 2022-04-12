@@ -1,7 +1,7 @@
 import React from 'react'
-import './Message.css'
 import { faCheckCircle } from '@fortawesome/free-regular-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import './Message.css'
 
 const Message = ({ message, type }) => {
     const className = `message message-${type}`

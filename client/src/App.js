@@ -4,7 +4,7 @@ import { useViewport } from './hooks/useViewport'
 import { AuthPage } from './pages/AuthPage/index'
 import { HomePage } from './pages/HomePage/index'
 import { AccountPage } from './pages/AccountPage/index'
-import { NewContactPage } from './pages/NewContactPage'
+import { NewChatPage } from './pages/NewChatPage'
 import { ChatPage } from './pages/ChatPage'
 import Root from './Root'
 import './styles/App.css'
@@ -23,7 +23,7 @@ function App() {
           <Route path='/register' element={<AuthPage type='register' />}/>
           <Route path='/login' element={<AuthPage type='login' />}/>
           <Route path='/home' element={<HomePage chats={chats} setActiveChat={setActiveChat} />} />
-          <Route path='/new-chat' element={<NewContactPage setChats={setChats} setActiveChat={setActiveChat}/> } />
+          <Route path='/new-chat' element={<NewChatPage setChats={setChats} setActiveChat={setActiveChat}/> } />
           <Route path='/chat' element={<ChatPage activeChat={activeChat} />} />
           <Route path='/account' element={<AccountPage />} />
         </Routes>

@@ -21,7 +21,7 @@
 .message__footer{
     display: flex;
     width: 100%;
-    justify-content: end;
+    justify-content: flex-end;
     font-size: 12px;
     letter-spacing: 1px;
     margin-top: 4px;
