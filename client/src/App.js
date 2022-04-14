@@ -1,5 +1,5 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
-import { useState } from 'react'
+import {  useState } from 'react'
 import { useViewport } from './hooks/useViewport'
 import { AuthPage } from './pages/AuthPage/index'
 import { HomePage } from './pages/HomePage/index'
@@ -22,7 +22,7 @@ function App() {
           <Route path='/' element={<Root />} />
           <Route path='/register' element={<AuthPage type='register' />}/>
           <Route path='/login' element={<AuthPage type='login' />}/>
-          <Route path='/home' element={<HomePage chats={chats} setChats={setChats} activeChat={activeChat} setActiveChat={setActiveChat} />} />
+          <Route path='/home' element={<HomePage chats={chats} activeChat={activeChat} setActiveChat={setActiveChat} />} />
           <Route path='/new-chat' element={<NewChatPage setChats={setChats} activeChat={activeChat} setActiveChat={setActiveChat}/> } />
           <Route path='/chat' element={<ChatPage activeChat={activeChat} setActiveChat={setActiveChat} />} />
           <Route path='/account' element={<AccountPage />} />

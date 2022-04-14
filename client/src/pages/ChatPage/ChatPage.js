@@ -4,12 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { getOpponent, scroll } from './ChatPage.model'
 import { Messages } from '../../components/messages'
 import { User } from '../../modules/user/user'
-import { useExit } from '../../hooks/useExit'
 import './ChatPage.css'
 
 const ChatPage = ({ activeChat, setActiveChat }) => {
-    useExit(activeChat)
-
     const user = User.get()
     const opponent = getOpponent(activeChat.users)
 
