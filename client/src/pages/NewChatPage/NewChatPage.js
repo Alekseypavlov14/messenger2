@@ -1,24 +1,22 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from 'react'
-import { useActiveChat } from '../../hooks/useActiveChat'
 import { ExitButton } from './../../components/exit-button/index'
 import { SearchResult } from '../../components/search-result'
-import { User } from '../../modules/user/user'
 import { findUsers, write } from './NewChatPage.model'
+import { useNavigate } from 'react-router'
 import './NewChatPage.css'
 
-const NewChatPage = ({ activeChat, setActiveChat }) => {
+const NewChatPage = () => {
     const [users, setUsers] = useState([])
     const [value, setValue] = useState('')
-    const user = User.get()
-    useActiveChat(activeChat)
+    const navigate = useNavigate()
 
     useEffect(() => {
-        findUsers(user, value, setUsers)
+        findUsers(value, setUsers)
     }, [value])
 
     function openChat(candidate) {
-        write(user, candidate, setActiveChat)
+        write(candidate).then(link => navigate(link))
     }
 
     return (

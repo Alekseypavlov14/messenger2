@@ -1,15 +1,21 @@
-import React from 'react'
+/* eslint-disable react-hooks/exhaustive-deps */
+import React, { useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { ChatLabel } from '../../components/chat-label/index'
-import { useActiveChat } from '../../hooks/useActiveChat'
 import { useRedirect } from '../../hooks/useRedirect'
 import { Link } from 'react-router-dom'
+import { getChats } from './HomePage.model'
 import './HomePage.css'
 
-const HomePage = ({ chats, activeChat, setActiveChat }) => {
+const HomePage = () => {
     useRedirect()
-    useActiveChat(activeChat)
+
+    const [chats, setChats] = useState([])
+
+    useEffect(() => {
+        getChats(setChats)
+    }, [])
 
     return (
         <div className='home'>
@@ -30,9 +36,6 @@ const HomePage = ({ chats, activeChat, setActiveChat }) => {
                     <ChatLabel 
                         key={index} 
                         chat={chat}
-                        onClick={() => {
-                            setActiveChat(chat)
-                        }}
                     />
                 ))}
             </div>

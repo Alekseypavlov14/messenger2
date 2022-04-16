@@ -1,6 +1,9 @@
+import { User } from '../../modules/user/user'
 import { http } from './../../modules/http/Http.controller'
 
-function findUsers(user, value, result) {
+const user = User.get()
+
+function findUsers(value, result) {
     if (!value) return result([])
     
     http.post('/chat/find', {
@@ -12,11 +15,17 @@ function findUsers(user, value, result) {
     })
 }
 
-function write(user, candidate, result) {
-    http.post('/chat/write', {
+async function write(candidate) {
+    return http.post('/chat/write', {
         candidate, user
     }).then(data => {
-        result(data.chat)
+        const chats = JSON.parse(sessionStorage.getItem('chats'))
+        const updatedChats = chats.concat([data.chat])
+        sessionStorage.setItem('chats', JSON.stringify(updatedChats))
+        
+        const link = '/chat/' + candidate.login
+
+        return link
     })
 }
 

@@ -1,29 +1,25 @@
-import React, { useState, useRef, useEffect } from 'react'
+import React, { useState } from 'react'
 import { faArrowLeft, faPaperPlane } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { getOpponent, scroll } from './ChatPage.model'
-import { Messages } from '../../components/messages'
-import { User } from '../../modules/user/user'
+import { getOpponent, useChat } from './ChatPage.model'
+import { Messages } from './../../components/messages/index'
+import { useNavigate } from 'react-router'
 import './ChatPage.css'
 
-const ChatPage = ({ activeChat, setActiveChat }) => {
-    const user = User.get()
-    const opponent = getOpponent(activeChat.users)
+const ChatPage = () => {
+    const navigate = useNavigate()
+
+    const chat = useChat()
+    const opponent = getOpponent(chat.users)
 
     const [newMessageText, setNewMessageText] = useState('')
-    const [messages, setMessages] = useState(activeChat.messages)
-    const MessageBoxElement = useRef(null)
-
-    useEffect(() => {
-        scroll(MessageBoxElement.current)
-    }, [messages])
 
     return (
         <div className='chat-page'>
             <header className='chat-page__header'>
                 <button 
                     className='chat-page__exit-button'
-                    onClick={() => setActiveChat(null)}
+                    onClick={() => navigate('/home')}
                 >
                     <FontAwesomeIcon icon={ faArrowLeft } />
                 </button>
@@ -32,12 +28,10 @@ const ChatPage = ({ activeChat, setActiveChat }) => {
                 </div>
             </header>
 
-            <div 
+            <Messages 
                 className='chat-page__messages' 
-                ref={MessageBoxElement}
-            >
-                <Messages messages={messages} />
-            </div>
+                messages={chat.messages} 
+            />
 
             <div className='chat-page__input-field'>
                 <textarea 
