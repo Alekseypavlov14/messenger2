@@ -1,8 +1,14 @@
 # CHANGELOG
 
+## Version 1.5.0
+
+Date 16.04.2022  
+New: 
+1) Finish refactoring (add chat model to db)
+
 ## Version 1.4.1
 
-Date: 10.04.2022
+Date: 10.04.2022  
 New:
 1) Replace HomePage login to the new file
 
