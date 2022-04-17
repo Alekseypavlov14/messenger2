@@ -5,6 +5,7 @@ import { HomePage } from './pages/HomePage/index'
 import { AccountPage } from './pages/AccountPage/index'
 import { NewChatPage } from './pages/NewChatPage'
 import { ChatPage } from './pages/ChatPage'
+import { NotFoundPage } from './pages/NotFoundPage/index'
 import { User } from './modules/user/user'
 
 const Router = () => {
@@ -17,6 +18,7 @@ const Router = () => {
             <Route path='/new-chat' element={<NewChatPage /> } />
             <Route path='/chat/:login' element={<ChatPage />} />
             <Route path='/account' element={<AccountPage />} />
+            <Route path='*' element={<NotFoundPage />} />
         </Routes>
     )
 
@@ -25,6 +27,7 @@ const Router = () => {
             <Route path='/' element={<Navigate to='/register' />} />
             <Route path='/register' element={<AuthPage type='register' />}/>
             <Route path='/login' element={<AuthPage type='login' />}/>
+            <Route path='*' element={<Navigate to='/register' />} />
         </Routes>
     )
 }
