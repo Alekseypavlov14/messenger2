@@ -38,7 +38,7 @@ const AuthPage = ({ type }) => {
                         <div className='auth__field__text'>Login</div>
                         <input 
                             type='text' 
-                            className='auth__field__input' 
+                            className='auth__field__input browser-default' 
                             placeholder='Login...' 
                             onChange={changeLoginHandler}
                         />
@@ -47,7 +47,7 @@ const AuthPage = ({ type }) => {
                         <div className='auth__field__text'>Password</div>
                         <input 
                             type='password' 
-                            className='auth__field__input' 
+                            className='auth__field__input  browser-default' 
                             placeholder='Password...' 
                             onChange={changePasswordHandler}
                         />

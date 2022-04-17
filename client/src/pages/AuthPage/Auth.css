@@ -47,6 +47,10 @@
     color: var(--dark-text-color)
 }
 
+.auth__field__input::placeholder {
+    color: var(--auth-placeholder);
+}
+
 .auth__button {
     display: block;
     width: 160px;

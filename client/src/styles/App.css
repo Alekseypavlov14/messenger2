@@ -9,9 +9,10 @@
 
 :root {
   --dark-text-color: #033503;
+  --auth-placeholder: #565656;
   --light-text-color: #fff;
   --lime-bg-color: #74FF74;
-  --input-bg-color: #eee;
+  --input-bg-color: #efefef;
   --outgoing-message-bg: #fefefe;
   --incoming-message-bg: #74FF74;
 }

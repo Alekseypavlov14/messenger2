@@ -1,21 +1,30 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faBars, faPencil } from '@fortawesome/free-solid-svg-icons'
 import { ChatLabel } from '../../components/chat-label/index'
 import { useRedirect } from '../../hooks/useRedirect'
 import { Link } from 'react-router-dom'
 import { getChats } from './HomePage.model'
+import { Loader } from '../../components/loader'
 import './HomePage.css'
 
 const HomePage = () => {
     useRedirect()
 
     const [chats, setChats] = useState([])
+    const [loading, setLoading] = useState(false)
+
+    const fetchChats = useCallback(async () => {
+        setLoading(true)
+        const chats = await getChats()
+        setChats(chats)
+        setLoading(false)
+    }, [])
 
     useEffect(() => {
-        getChats(setChats)
-    }, [])
+        fetchChats()
+    }, [fetchChats])
 
     return (
         <div className='home'>
@@ -38,6 +47,8 @@ const HomePage = () => {
                         chat={chat}
                     />
                 ))}
+
+                {loading && <Loader className='home__loader' />}
             </div>
 
             <Link 

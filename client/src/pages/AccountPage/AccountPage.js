@@ -33,7 +33,7 @@ const AccountPage = () => {
                     </label>
 
                     <input
-                        className='account__data__login__input'
+                        className='account__data__login__input browser-default'
                         onChange={changeHandler}
                         id='#login-input'
                         value={login}

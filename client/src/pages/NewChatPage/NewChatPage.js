@@ -24,7 +24,7 @@ const NewChatPage = () => {
             <div className='new-chat-page__search'>
                 <ExitButton className='new-chat-page__exit-button' />
                 <input 
-                    className='new-chat-page__search__input' 
+                    className='new-chat-page__search__input browser-default' 
                     onChange={e => setValue(e.target.value)}
                     placeholder='Search...'
                     type='text' 
