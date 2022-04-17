@@ -34,7 +34,7 @@ const HomePage = () => {
                     <FontAwesomeIcon icon={faBars} />
                 </Link>
 
-                <div className='home__header__title'>Web Messenger</div>
+                <div className='home__header__title'>Lite</div>
             </header>
 
             <div className='home__chats'>

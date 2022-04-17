@@ -9,6 +9,7 @@ New:
 3) Realize chats loading
 4) Add "not found" page
 5) Change routing (enable to exit)
+6) Name of the app
 
 ## Version 1.5.0
 
