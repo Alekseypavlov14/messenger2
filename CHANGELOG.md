@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Version 1.5.1
+
+Date 17.04.2022  
+New: 
+1) Add loader to homepage
+2) Install materialize
+3) Realize chats loading
+
 ## Version 1.5.0
 
 Date 16.04.2022  
