@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router'
 import { Link } from 'react-router-dom'
 import Auth from '../../modules/auth/Auth.controller'
 import './Auth.css'
@@ -7,15 +6,9 @@ import './Auth.css'
 const AuthPage = ({ type }) => {
     const [login, setLogin] = useState('')
     const [password, setPassword] = useState('')
-    const navigate = useNavigate()
 
-    async function authHandler() {
-        if (type === 'login') {
-            await Auth.login(login, password)
-        } else {
-            await Auth.register(login, password)
-        }
-        navigate('/')
+    function authHandler() {
+        Auth[type](login, password)
     }
 
     function changeLoginHandler(e) {

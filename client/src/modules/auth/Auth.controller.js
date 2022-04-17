@@ -17,11 +17,12 @@ class Auth {
             !( Valid.password(password) )
         ) return console.log('Invalid login or password')
 
-        await http.post(url, {
+        return http.post(url, {
             login, password
         }).then(data => {
             if (data.message) return console.log(data.message)
             this.saveUser(data)
+            window.location.href = '/'
         })
     }
 
