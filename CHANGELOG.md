@@ -7,6 +7,8 @@ New:
 1) Add loader to homepage
 2) Install materialize
 3) Realize chats loading
+4) Add "not found" page
+5) Change routing (enable to exit)
 
 ## Version 1.5.0
 
